@@ -27,5 +27,9 @@ class adminSchoolPage{
     getAdminAccounts(){
         return cy.xpath('//p[text()="Admin Accounts"]')
     }
+
+    getAdminTimetableManagement(){
+        return cy.xpath('//p[text()="Timetable Management"]')
+    }
 }
 module.exports = new adminSchoolPage()

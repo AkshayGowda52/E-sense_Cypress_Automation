@@ -201,7 +201,7 @@ describe("Admin School Validation", function () {
     })
   })
 
-  it("admin school 04 Verify that School admin can add new Admin accounts successfully with granting access per module required",function(){
+  it("admin school 05 Verify that School admin can add new Admin accounts successfully with granting access per module required",function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
@@ -209,7 +209,7 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getAdminAccountText().eq(0).should('have.text','Admin Accounts')
     adminaccountsPage.getAddnewBtn().click()
     adminaccountsPage.getAddNewRolePopUpText().should('contain.text','Add New Role')
-    adminaccountsPage.getDesignationNameTextField().type("Teacher")
+    adminaccountsPage.getDesignationNameTextField().type("HOD")
     adminaccountsPage.getDesignationNameTextField().invoke('val').then((text)=>{
       var designationName = text
       cy.log(designationName)
@@ -217,9 +217,53 @@ describe("Admin School Validation", function () {
     })
     adminaccountsPage.getViewEditApprovalCheckBox().click({multiple:true})
     adminaccountsPage.getAddRolePopUpBtn().click()
+    cy.wait(4000)
+    adminaccountsPage.getAdminTabBtn().click()
+    adminaccountsPage.getAdminAddNewbtn().click()
+    adminaccountsPage.getAdminFirstName().type('Sundri')
+    adminaccountsPage.getAdminEmail().type('sundri@gmail.com')
+    adminaccountsPage.getAdminCalenderIcon().click()
+    adminaccountsPage.getAdminCalenderYearsbtn().click()
+    adminaccountsPage.getAdminCalenderYears().contains('1998').click()
+    adminaccountsPage.getAdminCalenderDate().contains('5').click()
+    adminaccountsPage.getAdminGanderDropDown().click()
+    adminaccountsPage.getAdminGanderDropDownLists().contains('Female').click()
+    adminaccountsPage.getAdminContactTextField().type('9967885688')
+    adminaccountsPage.getAdminBloodGroupbtn().click()
+    adminaccountsPage.getAdminBloodGroupLists().contains('O+').click()
+    adminaccountsPage.getAdminEmployeeIDbtn().type('Malco007')
+    adminaccountsPage.getAdminSelectRoleBtn().click()
+    adminaccountsPage.getAdminSelectRoleLists().contains('HOD').click()
+    adminaccountsPage.getAdminAddressLine1btn().click().type('Kolar')
+    adminaccountsPage.getAdminPincode().type('563124')
+    cy.wait(5000)
+    adminaccountsPage.getAdminContinueBtn().click()
+    cy.wait(8000)
+    adminaccountsPage.getAdminAccountTableRoleText().eq(0).then((roleText)=>{
+      var roletext = roleText.text()
+      cy.log(roletext)
+      cy.get('@designationName').then((designationname)=>{
+      cy.log(roletext)
+        expect(designationname).to.eq(roletext)
+      })
+    })
+    cy.wait(2000)
+    adminaccountsPage.getRoleTab().click()
+    adminaccountsPage.getRoleDeleteBtn().click()
+    adminaccountsPage.getRoleDeletePopUpBtn().click()
+    cy.get('body').click(0, 0)
 
 
   })
+
+  it('admin school 06 Verify that School Admin can Create the Auto time table successfully',function(){
+    cy.wait(2000)
+    adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
+    adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
+    adminschoolpage.getAdminTimetableManagement().click()
+  })
+
+
 
 })
 
