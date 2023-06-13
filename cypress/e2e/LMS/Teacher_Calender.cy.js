@@ -75,7 +75,7 @@ it("E2E_4_MyCalender_Verify that School Teacher  can add Homework and Notes succ
     teacherCalenderPage.getYourCalenderPage().should('be.visible',{timeout:1000})
 
 })
-it.only("E2E_5_My Calender_Verify that School Teacher  can apply and see the Filters in My Calender",function(){
+it("E2E_5_My Calender_Verify that School Teacher  can apply and see the Filters in My Calender",function(){
     teacherCommonPage.getTeacherDashBoardPage().should('be.visible').and('have.text','Your Dashboard')
     teacherCommonPage.getTeacherSideNavbar().invoke('show').wait(500)
     teacherCommonPage.getTeacherMyCalenderTab().click({force:true})
@@ -152,7 +152,7 @@ calenderPage.getExamTypeDropdown().click()
 calenderPage.getExamTypeDropdownList('Test 1').click()
 calenderPage.getAttachAFileButton().attachFile('LMS/Event_added.pdf',{force:true}).wait(500)
 calenderPage.getSaveExamButton().click().wait(500)
-///////////////////////////////////////////////////////////////////////
+
 
     adminDashboardPage.logout()
     cy.wait(10000)
