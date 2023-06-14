@@ -150,7 +150,25 @@ class TeacherCalenderPage{
     getDeleteButton(){
         return cy.xpath('//button[@data-testid="delete"]')
     }
+    getHolidaysCheckbox(){
+        return cy.xpath('//input[@name="Holidays"]')
+    }
+    getClassesCheckbox(){
+        return cy.xpath('//input[@name="Classes"]')
+    }
+    getHolidayListInCalender(holidayTitle){
+        return cy.xpath("//strong[contains(text(),'"+holidayTitle+"')]")
+    }
+    getExamCheckbox(){
+        return cy.xpath('//input[@name="Exam"]')
+    }
+    getExamListInCalender(examTitle){
+        return cy.xpath("//span[text()='"+examTitle+"']")
+    }
 
 
 }
 module.exports=new TeacherCalenderPage()
+
+
+//Pavani

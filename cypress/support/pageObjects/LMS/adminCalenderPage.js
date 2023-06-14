@@ -224,6 +224,9 @@ class CalenderPage{
    getGradeDropdownListInEventPage(grade){
     return cy.xpath("//li[contains(text(),'"+grade+"')]")
    }
+   getGradeDropdownListInExamPage(grade){
+    return cy.xpath("//li[text()='"+grade+"']")
+   }
    getSectionDropdownInEventPage(){
     return cy.xpath("//label[text()='Section']/parent::div/child::div")
    }
@@ -402,6 +405,12 @@ class CalenderPage{
    getYearButtonInCalender(year){
     return cy.xpath("//div[text()='"+year+"']")
    }
+   getCalenderTable(){
+    return cy.get('div[class="mbsc-calendar-table"]').eq(1).find('div[aria-label="April"]')
+   }
+   getCalendertableParticularDate(){
+    return cy.get('div[aria-label="Thursday, April 24"]')
+   }
    getVerifyHolidaysDetailsInMonthlyCalender(date,remain){
     return cy.xpath('((//div[@class="mbsc-calendar-wrapper mbsc-windows"])[2]/descendant::div[text()="'+date+'"])[3]/following-sibling::div/descendant::div[text()="'+remain+'"]')
    }
@@ -411,3 +420,11 @@ class CalenderPage{
 
 }   
 module.exports=new CalenderPage()
+
+
+
+
+
+//Pavani
+
+

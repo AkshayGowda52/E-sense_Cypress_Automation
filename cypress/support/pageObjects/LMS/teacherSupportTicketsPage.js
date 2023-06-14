@@ -157,6 +157,28 @@ class TeacherSupportTicketsPage{
     getTeacherApprovedStatus(){
         return cy.xpath("//p[text()='Approved']")
     }
+    getStatusDropdown(status){
+        return  cy.xpath("//div[text()='"+status+"']")
+    }
+    getStatusDropdownList(statusList){
+        return cy.xpath("//li[text()='"+statusList+"']")
+    }
+    getRemarkstextField(){
+        return cy.xpath("//label[text()='Remarks']/following-sibling::div/textarea[1]")
+    }
+    getApprovedButton(){
+       return  cy.xpath("//button[text()='Approved']")
+   }
+   getTeacherNotificationTab(){
+    return cy.xpath("//div[text()='Notification']")
+   }
+   getTeacherYourNotificationPopup(){
+    return cy.xpath("//p[text()='Your notifications']")
+   }
+   getTeacherNotificationCount(){
+    return cy.xpath("//p[text()='Recent ']/following-sibling::span")
+   }
+   
 
     teacherLogout(){
         this.getTeacherSideNavbar().invoke('show').wait(1000)
