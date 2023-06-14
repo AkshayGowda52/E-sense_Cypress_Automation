@@ -219,7 +219,7 @@ class CalenderPage{
     return cy.xpath('//div[@class="event-model-wrapper "]')
    }
    getGradeDropdownInEventPage(){
-    return cy.xpath("//label[text()='Grade']/parent::div")
+    return cy.xpath('//label[text()="Grade"]/following-sibling::div/div[@role="button"]')
    }
    getGradeDropdownListInEventPage(grade){
     return cy.xpath("//li[contains(text(),'"+grade+"')]")
@@ -228,7 +228,7 @@ class CalenderPage{
     return cy.xpath("//li[text()='"+grade+"']")
    }
    getSectionDropdownInEventPage(){
-    return cy.xpath("//label[text()='Section']/parent::div/child::div")
+    return cy.xpath('//label[text()="Section"]/following-sibling::div/div[@role="button"]')
    }
    getSectionDropdownListInEventPage(section){
     return cy.xpath("//li[contains(text(),'"+section+"')]")
@@ -321,7 +321,7 @@ class CalenderPage{
     return cy.xpath("//h1[text()='Create Exam']")
    }
    getSubjectDropdownInExamSection(){
-    return cy.xpath("//label[text()='Subject']/parent::div")
+    return cy.xpath('//label[text()="Subject"]/following-sibling::div/div[@role="button"]')
    }
    getSubjectDropdownList(subject){
     return cy.xpath("//li[contains(text(),'"+subject+"')]")
