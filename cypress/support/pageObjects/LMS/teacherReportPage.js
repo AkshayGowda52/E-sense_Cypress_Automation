@@ -18,11 +18,11 @@ class TeacherReport{
     }
 
     getTheoryTxtField(){
-        return cy.get('input[type="text"]').eq(0)
+        return cy.get('div[class="schTableInputFoc"]>input[type="number"]').eq(0)
     }
 
     getPracticleTxtField(){
-        return cy.get('input[type="text"]').eq(1)
+        return cy.get('div[class="schTableInputFoc"]>input[type="number"]').eq(1)
     }
 
     getCoScholasticActivitiesMarksTxtField(){
@@ -95,5 +95,78 @@ class TeacherReport{
     getSaveANDcountinueBtn(){
         return cy.xpath('//button[contains(.,"Save and Continue ")]')
     }
+
+
+//Tc__003 Verify that Teacher can search and select filters in Gradebook
+    getSearchTxtField(){
+        return cy.get('input[placeholder="Search a student..."]')
+    }
+
+    getAlltermsDropdown(){
+        return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All terms")]')
+    }
+
+    getAlltermsLists(){
+        return cy.get('ul[role="listbox"] li').contains('Term 1')
+    }
+
+    // Tc__005 Verify that School Admin can add the Health report in 360 reports
+
+    getStudent360ReportsTab(){
+        return cy.get('div[class="content-report-sect"] [class="popover-arrow"]')
+    }
+
+    get360ReportTxt(){
+        return cy.xpath('//p[contains(.,"360˚ Reports")]')
+    }
+
+    getStudentsName(){
+        return cy.get('tbody td:nth-child(3)')
+    }
+
+    getViewReportBtn(){
+        return cy.get('[class="viewBtn"]')
+    }
+
+    getAddReportsBtn(){
+        return cy.xpath('//button[contains(.,"Add Reports")]')
+    }
+
+    getAddNewReportTxt(){
+        return cy.contains('Add New Report')
+    }
+
+    getSchoolTypeDropdown(){
+        return cy.get('form[id="deptForm"] div[id="demo-simple-select"]').first()
+    }
+
+    getSchoolLists(){
+        return cy.get('ul[role="listbox"]>li').contains('Middle School')
+    }
+
+    getGradesDropdown(){
+        return cy.get('form[id="deptForm"] div[id="demo-simple-select"]').last()
+    }
+
+    getAddNewReportPage_GradesLists(){
+        return cy.get('ul[role="listbox"]>li').contains('Grade 2')
+    }
+
+    getWeightTxtField(){
+        return cy.get('form[id="deptForm"] input[class*="MuiOutlinedInput-input MuiInputBase-input"]').first()
+    }
+
+    getHeightTxtField(){
+        return cy.get('form[id="deptForm"] input[class*="MuiOutlinedInput-input MuiInputBase-input"]').last()
+    }
+
+    getAddBtn(){
+        return cy.get('button[type="submit"]')
+    }
+
+
+
+
+
 }
 module.exports = new TeacherReport();
