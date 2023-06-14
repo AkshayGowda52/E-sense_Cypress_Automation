@@ -205,4 +205,5 @@ describe("Admin School Validation", function () {
     cy.wait(3000)
   })
   //author - shiva
+  //sample
 })
