@@ -109,6 +109,18 @@ class TeacherReport{
     getAlltermsLists(){
         return cy.get('ul[role="listbox"] li').contains('Term 1')
     }
+    
+
+    //Tc__004 Verify that Teacher can search and select filters in 360 reports
+
+    get360ReportPageGradeDropdown(){
+        return cy.get('div[aria-haspopup="listbox"] ').eq(0)
+    }
+
+    get360ReportPageSectionDropdown(){
+        return cy.get('div[aria-haspopup="listbox"] ').eq(1)
+    }
+
 
     // Tc__005 Verify that School Admin can add the Health report in 360 reports
 
@@ -163,7 +175,6 @@ class TeacherReport{
     getAddBtn(){
         return cy.get('button[type="submit"]')
     }
-
 
 
 
