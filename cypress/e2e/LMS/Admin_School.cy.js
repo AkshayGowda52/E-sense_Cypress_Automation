@@ -5,6 +5,7 @@ const admin_Schoolpage = require('../../support/pageObjects/LMS/admin_Schoolpage
 const schoolInfrastructuresPage = require('../../support/pageObjects/LMS/schoolInfrastructuresPage')
 const curriculumbuilderPage = require('../../support/pageObjects/LMS/curriculumBuilderPage')
 const adminaccountsPage = require('../../support/pageObjects/LMS/adminAccountsPage')
+const timeTableManagement = require('../../support/pageObjects/LMS/timeTableManagement')
 
 describe("Admin School Validation", function () {
 
@@ -256,11 +257,36 @@ describe("Admin School Validation", function () {
 
   })
 
-  it('admin school 06 Verify that School Admin can Create the Auto time table successfully',function(){
+  it.only('admin school 07 Verify that School Admin can Create the Auto time table successfully',function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     adminschoolpage.getAdminTimetableManagement().click()
+    timeTableManagement.getTimetableManagmentText().should('have.text','Timetable Management')
+    timeTableManagement.getTypeText().should('be.visible')
+    timeTableManagement.getStatus().should('be.visible')
+    timeTableManagement.getGenerateTimeTable().click()
+    timeTableManagement.getCheckBtns().eq(1).should('be.checked')
+    timeTableManagement.getDropDowns().eq(0).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('6').click()
+    timeTableManagement.getDropDowns().eq(1).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('7').click()
+    timeTableManagement.getDropDowns().eq(2).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('60 Minutes').click()
+    timeTableManagement.getDropDowns().eq(3).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('1212').click()
+    timeTableManagement.getBrealTextFields().eq(0).type('Break1')
+    timeTableManagement.getDropDowns().eq(4).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('15 Minutes').click()
+    timeTableManagement.getAddBrerakBtn().click()
+    timeTableManagement.getBrealTextFields().eq(1).type('Lunch Break')
+    timeTableManagement.getDropDowns().eq(5).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('30 Minutes').click()
+    timeTableManagement.getAddBrerakBtn().click()
+    timeTableManagement.getBrealTextFields().eq(2).type('Lunch Break')
+    timeTableManagement.getDropDowns().eq(6).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('15 Minutes').click()
+    
   })
 
 
