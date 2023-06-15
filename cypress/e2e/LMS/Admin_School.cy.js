@@ -235,11 +235,12 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getAdminEmployeeIDbtn().type('Malco007')
     adminaccountsPage.getAdminSelectRoleBtn().click()
     adminaccountsPage.getAdminSelectRoleLists().contains('HOD').click()
-    adminaccountsPage.getAdminAddressLine1btn().click().type('Kolar')
-    adminaccountsPage.getAdminPincode().type('563124')
-    cy.wait(5000)
+    adminaccountsPage.getAdminAddressLine1btn().type('Bnagalore Univercity')
+    adminaccountsPage.getAdminAddressLine2Btn().type("Ulall")
+    adminaccountsPage.getAdminPincode().type('560056')
+    cy.wait(4000)
     adminaccountsPage.getAdminContinueBtn().click()
-    cy.wait(8000)
+    cy.wait(3000)
     adminaccountsPage.getAdminAccountTableRoleText().eq(0).then((roleText)=>{
       var roletext = roleText.text()
       cy.log(roletext)
@@ -248,16 +249,16 @@ describe("Admin School Validation", function () {
         expect(designationname).to.eq(roletext)
       })
     })
+
     cy.wait(2000)
     adminaccountsPage.getRoleTab().click()
     adminaccountsPage.getRoleDeleteBtn().click()
     adminaccountsPage.getRoleDeletePopUpBtn().click()
     cy.get('body').click(0, 0)
 
-
   })
 
-  it.only('admin school 07 Verify that School Admin can Create the Auto time table successfully',function(){
+  it('admin school 07 Verify that School Admin can Create the Auto time table successfully',function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
@@ -274,21 +275,26 @@ describe("Admin School Validation", function () {
     timeTableManagement.getDropDowns().eq(2).click()
     timeTableManagement.getDayWeeksDropDownLists().contains('60 Minutes').click()
     timeTableManagement.getDropDowns().eq(3).click()
-    timeTableManagement.getDayWeeksDropDownLists().contains('1212').click()
+    timeTableManagement.getRoomLists().contains('Kannada').click()
     timeTableManagement.getBrealTextFields().eq(0).type('Break1')
     timeTableManagement.getDropDowns().eq(4).click()
     timeTableManagement.getDayWeeksDropDownLists().contains('15 Minutes').click()
+    timeTableManagement.getDropDowns().eq(5).click()
+    timeTableManagement.getRoomLists().contains("2nd").click()
     timeTableManagement.getAddBrerakBtn().click()
     timeTableManagement.getBrealTextFields().eq(1).type('Lunch Break')
-    timeTableManagement.getDropDowns().eq(5).click()
-    timeTableManagement.getDayWeeksDropDownLists().contains('30 Minutes').click()
-    timeTableManagement.getAddBrerakBtn().click()
-    timeTableManagement.getBrealTextFields().eq(2).type('Lunch Break')
     timeTableManagement.getDropDowns().eq(6).click()
+    timeTableManagement.getDayWeeksDropDownLists().contains('30 Minutes').click()
+    timeTableManagement.getDropDowns().eq(7).click()
+    timeTableManagement.getRoomLists().contains("4th").click()
+    timeTableManagement.getAddBrerakBtn().click()
+    timeTableManagement.getBrealTextFields().eq(2).type('Tea Break')
+    timeTableManagement.getDropDowns().eq(8).click()
     timeTableManagement.getDayWeeksDropDownLists().contains('15 Minutes').click()
-    
-  })
+    timeTableManagement.getDropDowns().eq(9).click()
+    timeTableManagement.getRoomLists().contains("6th").click()
 
+  })
 
 
 })
