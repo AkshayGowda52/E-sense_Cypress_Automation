@@ -28,6 +28,10 @@ class timeTableManagement{
         return cy.get('ul[aria-labelledby="demo-simple-select-label"] li')
     }
 
+    getRoomLists(){
+        return cy.get('ul.MuiMenu-list li')
+    }
+
     getBrealTextFields(){
         return cy.get('div.mw-text-field-cls')
     }

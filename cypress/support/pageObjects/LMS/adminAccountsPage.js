@@ -92,6 +92,10 @@ class adminAccountsPage{
         return cy.get('input[name="address_one"]')
     }
 
+    getAdminAddressLine2Btn(){
+        return cy.get('input[name="address_two"]')
+    }
+
     getAdminPincode(){
         return cy.get('input[name="pincode"]')
     }
