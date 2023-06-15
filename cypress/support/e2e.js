@@ -1,5 +1,6 @@
 //X-path plugin
 require('cypress-xpath');
+import '@shelex/cypress-allure-plugin';
 
 // File-Upload Plugin
 import 'cypress-file-upload';
