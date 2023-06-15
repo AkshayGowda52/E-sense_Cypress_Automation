@@ -7,7 +7,7 @@ class AdminReportPage {
     }
 
     getAdminReportsStudentGradebookTab() {
-        return cy.get('div[class="content-popover-reports"]').eq(0)
+        return cy.get('div[class="content-report-sect"] [class="popover-arrow"]').eq(0)
     }
 
     getAdminReportsVerifyStudentGradebookText() {

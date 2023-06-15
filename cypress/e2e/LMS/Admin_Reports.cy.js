@@ -16,7 +16,7 @@ describe('Admin Report Validation', function () {
     cy.fixture('LMS/GradeBook_templateDetails').as('TemplateDetails')
   })
 
-  it.only('Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template', function () {
+  it('Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template', function () {
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
     ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
@@ -572,7 +572,7 @@ describe('Admin Report Validation', function () {
 
   })
 
-  it("Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports",function(){
+  it.only("Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports",function(){
 
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
