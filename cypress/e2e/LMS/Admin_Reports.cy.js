@@ -16,7 +16,7 @@ describe('Admin Report Validation', function () {
     cy.fixture('LMS/GradeBook_templateDetails').as('TemplateDetails')
   })
 
-  it('Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template', function () {
+  it.only('Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template', function () {
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
     ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', this.TemplateDetails.StudentGradebookText)
@@ -60,12 +60,10 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade).should('be.visible')
     ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade).click().wait(1000)
     ReportDashboardPage.getYesUnfinishButton().click()
-    //cy.wait(6000)
-    // ReportDashboardPage.getVerifyGradebookUnfinishedSuccesfullyTxt().should('have.contains',' Gradebook is unpublished successfully')
     ReportDashboardPage.getVerifyGradeContainDraftStatus(this.TemplateDetails.Grade).should('be.visible')
     ReportDashboardPage.getDraftStatusToggleButton(this.TemplateDetails.Grade).click()
     ReportDashboardPage.getPreviewScreenPublishButton().click()
-    ReportDashboardPage.getPreviewScreenYesPublishButton().click()
+    ReportDashboardPage.getPreviewScreenYesPublishButton().click({force:true})
     ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade).should('be.visible')
     ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade).click().wait(1000)
     ReportDashboardPage.getYesUnfinishButton().click()
@@ -224,7 +222,6 @@ describe('Admin Report Validation', function () {
     ReportDashboardPage.getPreviewScreenPublishButton().click()
     ReportDashboardPage.getPreviewScreenYesPublishButton().click()
     ReportDashboardPage.getVerifyGradeContainPublishedStatus(this.TemplateDetails.Grade).should('be.visible')
-
     ReportDashboardPage.getPublishedStatusToggleButton(this.TemplateDetails.Grade).click().wait(1000)
     ReportDashboardPage.getYesUnfinishButton().click()
     ReportDashboardPage.getDeleteIcon(this.TemplateDetails.Grade).click()
@@ -258,7 +255,7 @@ describe('Admin Report Validation', function () {
 
 
 
-  it.only('Tc_006 Verify that School Admin can Add results for respective students', function () {
+  it('Tc_006 Verify that School Admin can Add results for respective students', function () {
 
     // pre condition --- Create student
     ReportDashboardPage.getUserTab().click()
@@ -332,12 +329,8 @@ describe('Admin Report Validation', function () {
     })
 
     ReportDashboardPage.getTeacherModuleMyClassTab().click({ force: true })
-    // ReportDashboardPage.getTeacherModuleSubjectTab().click({ force: true })
-    // ReportDashboardPage.getTeacherModuleAssessmentsTab().click({ force: true }).wait(1000)
-    // ReportDashboardPage.getTeacherModuleELAsTab().should('be.visible').wait(1000)
-    cy.go('back')
+   // cy.go('back')
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click({ force: true }).wait(2000)
-   // ReportDashboardPage.getAdminReportsStudentGradebookTab().should('be.visible', { timeout: 2000 }).click({ force: true })
    teacherReport.getStudentGradeBookTab().eq(0).wait(1000).click()
         cy.wait(1000)
     ReportDashboardPage.getGradeBookStudentsLists().each(($element) => {

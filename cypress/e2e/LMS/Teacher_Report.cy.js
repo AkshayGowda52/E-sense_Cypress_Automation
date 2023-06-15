@@ -57,7 +57,7 @@ describe("TeacherReports", function () {
         })
         teacherReport.getSideNavBar().invoke('show')
         teacherReport.getReportTab().click({ force: true })
-        teacherReport.getStudentGradeBookTab().eq(0).wait(1000).click()
+        teacherReport.getStudentGradeBookTab().eq(0).wait(500).click()
         cy.wait(1000)
         teacherReport.getStudentFullName().each((txt, index) => {
             var studentName = txt.text()
@@ -65,10 +65,10 @@ describe("TeacherReports", function () {
                 teacherReport.getArrowForwardIcon().eq(index).click({ force: true })
             }
         })
-        teacherReport.getEditBtn().click().wait(1000)
-        teacherReport.getTheoryTxtField().click().type(70)
-        teacherReport.getPracticleTxtField().click().type('00')
-        teacherReport.getCoScholasticActivitiesMarksTxtField().click().type(3)
+        teacherReport.getEditBtn().click().wait(500)
+        teacherReport.getTheoryTxtField().click().type(55)
+        teacherReport.getPracticleTxtField().click().type(45)
+        teacherReport.getCoScholasticActivitiesMarksTxtField().click().type(5)
         teacherReport.getRemarksTxtField().click().type('nothing')
         teacherReport.getTotalPercentage().should('be.visible')
         teacherReport.getStudentResult().should('be.visible')
@@ -114,10 +114,10 @@ describe("TeacherReports", function () {
 
         // Post conditon- Delete Created Student account
         ReportDashboardPage.getUserTab().click({ force: true })
-        ReportDashboardPage.getStudentsTab().click().wait(2000)
+        ReportDashboardPage.getStudentsTab().click().wait(1000)
         ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
             var studentName = $text.text().trim()
-            if (studentName === 'kumar') {
+            if (studentName == 'kumar') {
                 ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
                 ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
                 ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
@@ -163,8 +163,7 @@ describe("TeacherReports", function () {
         })
         teacherReport.getSideNavBar().invoke('show')
         teacherReport.getReportTab().click({ force: true })
-        teacherReport.getStudentGradeBookTab().eq(0).wait(1000).click()
-        cy.wait(1000)
+        teacherReport.getStudentGradeBookTab().eq(0).wait(500).click().wait(500)
         teacherReport.getStudentFullName().each((txt, index) => {
             var studentName = txt.text()
             if (studentName == 'kumar') {
@@ -172,29 +171,177 @@ describe("TeacherReports", function () {
             }
         })
         teacherReport.getEditBtn().click().wait(1000)
-        teacherReport.getTheoryTxtField().click().type(70)
-        teacherReport.getPracticleTxtField().click().type('00')
+        teacherReport.getTheoryTxtField().click().type(55)
+        teacherReport.getPracticleTxtField().click({force:true}).type(45)
+        teacherReport.getCoScholasticActivitiesMarksTxtField().click().type(5)
         teacherReport.getCancelBtn().click()
         teacherReport.getSaveANDcountinueBtn().click()
         ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', 'Student Gradebook')
+        
+        // Post conditon- Delete Created Student account
         teacherDashboard.teacherLogout()
         cy.wait(1000)
         cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
             cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
         })
-
-        // Post conditon- Delete Created Student account
         ReportDashboardPage.getUserTab().click({ force: true })
-        ReportDashboardPage.getStudentsTab().click().wait(2000)
+        ReportDashboardPage.getStudentsTab().click().wait(500)
         ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
             var studentName = $text.text().trim()
-            if (studentName === 'kumar') {
+            if (studentName =='kumar') {
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+            }
+        })
+    })
+
+    it('TC__003 Verify that Teacher can search and select filters in Gradebook',function(){
+         // pre condition --- Create student
+         var randNumb = Math.floor(Math.random() * 100)
+         teacherDashboard.teacherLogout()
+         cy.wait(500)
+         cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+             cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+         })
+         ReportDashboardPage.getUserTab().click()
+         ReportDashboardPage.getStudentsTab().click()
+         ReportDashboardPage.getAddStudentsIcon().click({ force: true })
+         ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type("kumar")
+         ReportDashboardPage.getAddStudentPageGenderDropdown().click()
+         ReportDashboardPage.getAddStudentPageGenderList().click()
+         ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(9999999999)
+         ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
+         ReportDashboardPage.getAddStudentPageSelectRelation().click()
+         ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type("veena")
+         ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type("8888888888")
+         ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type("Bangalore")
+         ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(561101).wait(1000)
+         ReportDashboardPage.getAddStudentButton().click()
+         ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type("2012")
+         ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(randNumb)
+         ReportDashboardPage.getAddStudentPageGradeDropdown().click()
+         teacherReport.getListOfGrade().click()
+         ReportDashboardPage.getAddStudentPageSectionDropdown().click()
+         teacherReport.getSectionList().click()
+         ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(randNumb)
+         ReportDashboardPage.getAddStudentButton().click()
+         dashboard.logout()
+ 
+         // Actual condition --Verify that Teacher can search and select filters in Gradebook
+         cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
+             cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
+         })
+         teacherReport.getSideNavBar().invoke('show')
+         teacherReport.getReportTab().click({ force: true })
+         teacherReport.getStudentGradeBookTab().eq(0).wait(500).click().wait(500)
+         ReportDashboardPage.getAdminReportsVerifyStudentGradebookText().should('have.text', 'Student Gradebook')
+         teacherReport.getStudentFullName().should('be.visible')
+         teacherReport.getSearchTxtField().type('kumar')
+         teacherReport.getStudentFullName().each((txt) => {
+            var studentName = txt.text()
+            if (studentName == 'kumar') {
+                teacherReport.getAlltermsDropdown().click()
+                teacherReport.getAlltermsLists().click()
+
+            }
+        })
+        // Post conditon- Delete Created Student account
+        teacherDashboard.teacherLogout()
+        cy.wait(1000)
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        ReportDashboardPage.getUserTab().click({ force: true })
+        ReportDashboardPage.getStudentsTab().click().wait(500)
+        ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+            var studentName = $text.text().trim()
+            if (studentName == 'kumar') {
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
+                ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
+            }
+        })
+    })
+
+    it.only('Tc__005 Verify that School Admin can add the Health report in 360 reports',function(){
+        // pre condition --- Create student
+        var randNumb = Math.floor(Math.random() * 100)
+        teacherDashboard.teacherLogout()
+        cy.wait(500)
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        ReportDashboardPage.getUserTab().click()
+        ReportDashboardPage.getStudentsTab().click()
+        ReportDashboardPage.getAddStudentsIcon().click({ force: true })
+        ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type("kumar")
+        ReportDashboardPage.getAddStudentPageGenderDropdown().click()
+        ReportDashboardPage.getAddStudentPageGenderList().click()
+        ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(9999999999)
+        ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
+        ReportDashboardPage.getAddStudentPageSelectRelation().click()
+        ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type("veena")
+        ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type("8888888888")
+        ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type("Bangalore")
+        ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(561101).wait(1000)
+        ReportDashboardPage.getAddStudentButton().click()
+        ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type("2012")
+        ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(randNumb)
+        ReportDashboardPage.getAddStudentPageGradeDropdown().click()
+        teacherReport.getListOfGrade().click()
+        ReportDashboardPage.getAddStudentPageSectionDropdown().click()
+        teacherReport.getSectionList().click()
+        ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(randNumb)
+        ReportDashboardPage.getAddStudentButton().click()
+        dashboard.logout()
+
+        // Actual condition --Verify that Teacher can search and select filters in Gradebook
+        cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
+            cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
+        })
+        teacherReport.getSideNavBar().invoke('show')
+        teacherReport.getReportTab().click({ force: true })
+        teacherReport.getStudent360ReportsTab().eq(1).wait(500).click().wait(500)
+        teacherReport.get360ReportTxt().should('have.text','360˚ Reports')
+        teacherReport.getStudentsName().each((Txt,index)=>{
+            var StudentNames=Txt.text()
+            console.log(StudentNames);
+            if (StudentNames=='kumar') {
+                teacherReport.getViewReportBtn().eq(index).click()
+            }
+        })
+        teacherReport.getAddReportsBtn().click()
+        teacherReport.getAddNewReportTxt().should('have.text','Add New Report')
+        teacherReport.getSchoolTypeDropdown().click()
+        teacherReport.getSchoolLists().click()
+        teacherReport.getGradesDropdown().click()
+        teacherReport.getAddNewReportPage_GradesLists().click()
+        teacherReport.getWeightTxtField().click().type('60')
+        teacherReport.getHeightTxtField().click().type('125')
+        teacherReport.getAddBtn().click()
+        ///// STUDENT App
+
+
+        // Post conditon- Delete Created Student account
+        teacherDashboard.teacherLogout()
+        cy.wait(1000)
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        ReportDashboardPage.getUserTab().click({ force: true })
+        ReportDashboardPage.getStudentsTab().click().wait(500)
+        ReportDashboardPage.getAdminModuleUserPageStudentsList().each(($text, index) => {
+            var studentName = $text.text().trim()
+            if (studentName == 'kumar') {
                 ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
                 ReportDashboardPage.getAdminModuleUserPageStudentsListDeletePopup().click()
                 ReportDashboardPage.getAdminModuleUserPageStudentsListDeleteButton().click()
             }
         })
 
-
     })
+
+
+
 })
