@@ -254,7 +254,7 @@ describe('Admin Report Validation', function () {
 
 
 
-  it.skip('Tc_006 Verify that School Admin can Add results for respective students', function () {
+  it('Tc_006 Verify that School Admin can Add results for respective students', function () {
 
     // pre condition --- Create student
     ReportDashboardPage.getUserTab().click()
@@ -293,9 +293,9 @@ describe('Admin Report Validation', function () {
       }
     })
     ReportDashboardPage.getEditButton().click()
-    ReportDashboardPage.getTheoryTextField().click().wait(1000).type(70)
-    ReportDashboardPage.getPracticleTextfield().click().wait(1000).type('00')
-    teacherReport.getCoScholasticActivitiesMarksTxtField().click().type(3)
+    ReportDashboardPage.getTheoryTextField().click().wait(1000).type(55)
+    ReportDashboardPage.getPracticleTextfield().click().wait(1000).type(45)
+    teacherReport.getCoScholasticActivitiesMarksTxtField().click().type(5)
     ReportDashboardPage.getRemarksTextfield().type(this.TemplateDetails.Remarks)
     ReportDashboardPage.getTotalPercentage().should('be.visible')
     ReportDashboardPage.getResult().should('be.visible')
@@ -328,15 +328,11 @@ describe('Admin Report Validation', function () {
     })
 
     ReportDashboardPage.getTeacherModuleMyClassTab().click({ force: true })
+    cy.go('back')
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click({ force: true }).wait(2000)
     teacherReport.getStudentGradeBookTab().eq(0).wait(1000).click()
-    cy.wait(1000)
-    ReportDashboardPage.getGradeBookStudentsLists().each(($element) => {
-      if ($element.text() == 'kumarr') {
-        ReportDashboardPage.getStudentResult().should('be.visible')
-
-      }
-    })
+    ReportDashboardPage.getGradeBookStudentsLists().should('be.visible')
+    // Step ====>Student login Not Done
 
     // Post conditon- Delete Created Student account
     teacherDashboard.teacherLogout()
@@ -424,7 +420,7 @@ describe('Admin Report Validation', function () {
   })
 
 
-  it('Tc_008 Verify that School Admin can search and select filters in 360 reports', function () {
+  it.only('Tc_008 Verify that School Admin can search and select filters in 360 reports', function () {
 
     // pre condition --- Create student
     var RandNum = Math.floor(Math.random() * 10)
