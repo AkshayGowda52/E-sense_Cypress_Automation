@@ -442,11 +442,11 @@ class AdminReportPage {
     }
 
     getTheoryTextField() {
-        return cy.get('input[type="text"]').eq(0)
+        return cy.get('div[class="schTableInputFoc"]>input[type="number"]').eq(0)
     }
 
     getPracticleTextfield() {
-        return cy.get('input[type="text"]').eq(1)
+        return cy.get('div[class="schTableInputFoc"]>input[type="number"]').eq(1)
     }
 
     getCoScholasticActivities1_TxtField() {
@@ -551,7 +551,7 @@ class AdminReportPage {
 
     // Tc_008 Verify that School Admin can search and select filters in 360 reports
     getStudent360ReportTab() {
-        return cy.get('div[class="content-popover-reports"]').eq(1)
+        return cy.get('div[class="content-report-sect"] [class="popover-arrow"]').eq(1)
     }
 
     get360ReportPageTitle() {
