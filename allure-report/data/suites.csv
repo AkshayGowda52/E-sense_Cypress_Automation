@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Jun 15 17:18:40 IST 2023","Thu Jun 15 17:20:05 IST 2023","84950","","TeacherReports","","","","Tc__004 Verify that Teacher can search and select filters in 360 reports",""
+"passed","Fri Jun 16 16:09:09 IST 2023","Fri Jun 16 16:09:18 IST 2023","9377","","Teacher Notice board Validation","","","","E2E_01 Verify that School Teacher sees ""No Notice Found"" text when notices were not published",""

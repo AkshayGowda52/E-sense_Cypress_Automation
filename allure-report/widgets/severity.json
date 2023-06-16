@@ -1,1 +1,1 @@
-[{"uid":"fa393c6a4ac3335f","name":"Tc__004 Verify that Teacher can search and select filters in 360 reports","time":{"start":1686829720130,"stop":1686829805080,"duration":84950},"status":"passed","severity":"normal"}]
+[{"uid":"634cc360a0f34b4c","name":"E2E_01 Verify that School Teacher sees \"No Notice Found\" text when notices were not published","time":{"start":1686911949284,"stop":1686911958661,"duration":9377},"status":"passed","severity":"normal"}]
