@@ -160,7 +160,6 @@ describe("Admin School Validation", function () {
         schoolInfrastructuresPage.getPopupAddRoomBttn().click()
         schoolInfrastructuresPage.getInfrastructureDeleteIconBtn().eq(index).click()
         schoolInfrastructuresPage.getInfrastructureDeleteBttnPopUp().click()
-      
       }
     })
   })
@@ -238,6 +237,7 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getAdminAddressLine1btn().type('Bnagalore Univercity')
     adminaccountsPage.getAdminAddressLine2Btn().type("Ulall")
     adminaccountsPage.getAdminPincode().type('560056')
+    // cy.get('input[name="state"]').click({force:true})
     cy.wait(4000)
     adminaccountsPage.getAdminContinueBtn().click()
     cy.wait(3000)
@@ -255,6 +255,7 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getRoleDeleteBtn().click()
     adminaccountsPage.getRoleDeletePopUpBtn().click()
     cy.get('body').click(0, 0)
+
 
   })
 
@@ -293,7 +294,15 @@ describe("Admin School Validation", function () {
     timeTableManagement.getDayWeeksDropDownLists().contains('15 Minutes').click()
     timeTableManagement.getDropDowns().eq(9).click()
     timeTableManagement.getRoomLists().contains("6th").click()
+    timeTableManagement.getGenerateTimeSlotsBtn().click()
 
+  })
+
+  it('admin school 08 Verify that School Admin can Update and republish the Manual time table which is published already',function(){
+    adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
+    adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
+    adminschoolpage.getAdminTimetableManagement().click()
+    timeTableManagement.getTimetableManagmentText().should('have.text','Timetable Management')
   })
 
 

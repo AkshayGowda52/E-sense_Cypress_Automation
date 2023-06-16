@@ -39,6 +39,10 @@ class timeTableManagement{
     getAddBrerakBtn(){
         return cy.get('.add-poc-btn')
     }
+
+    getGenerateTimeSlotsBtn(){
+        return cy.get('button.continue-btn')
+    }
 }
 
 module.exports = new timeTableManagement()
