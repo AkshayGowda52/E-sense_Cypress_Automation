@@ -304,7 +304,7 @@ describe("Admin School Validation", function () {
     adminschoolpage.getAdminTimetableManagement().click()
     timeTableManagement.getTimetableManagmentText().should('have.text','Timetable Management')
   })
-
+  
 })
 
     //Akshay
