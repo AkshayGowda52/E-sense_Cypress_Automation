@@ -19,6 +19,7 @@ describe("Teacher Notice board Validation", function () {
         teacherNoticeboardPage.getCalenderIcon().should('be.visible')
         teacherNoticeboardPage.getAcademicYearDropdown().should('be.visible')
         teacherNoticeboardPage.getSortByDropdown().should('be.visible')
+        
     })
 
 })
