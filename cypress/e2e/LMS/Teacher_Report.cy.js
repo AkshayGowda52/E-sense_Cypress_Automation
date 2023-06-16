@@ -263,62 +263,62 @@ describe("TeacherReports", function () {
         })
     })
 
-    it('Tc__004 Verify that Teacher can search and select filters in 360 reports',function(){
-         // pre condition --- Create student
-         var randNumb = Math.floor(Math.random() * 100)
-         teacherDashboard.teacherLogout()
-         cy.wait(500)
-         cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
-             cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
-         })
-         ReportDashboardPage.getUserTab().click()
-         ReportDashboardPage.getStudentsTab().click()
-         ReportDashboardPage.getAddStudentsIcon().click({ force: true })
-         ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type("ram")
-         ReportDashboardPage.getAddStudentPageGenderDropdown().click()
-         ReportDashboardPage.getAddStudentPageGenderList().click()
-         ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(9999999999)
-         ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
-         ReportDashboardPage.getAddStudentPageSelectRelation().click()
-         ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type("veena")
-         ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type("8888888888")
-         ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type("Bangalore")
-         ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(561101).wait(1000)
-         ReportDashboardPage.getAddStudentButton().click()
-         ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type("2012")
-         ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(randNumb)
-         ReportDashboardPage.getAddStudentPageGradeDropdown().click()
-         teacherReport.getListOfGrade().click()
-         ReportDashboardPage.getAddStudentPageSectionDropdown().click()
-         teacherReport.getSectionList().click()
-         ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(randNumb)
-         ReportDashboardPage.getAddStudentButton().click()
-         dashboard.logout()
- 
-         // Actual condition --Verify that Teacher can search and select filters in 360 reports
-         cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
-             cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
-         })
-         teacherReport.getSideNavBar().invoke('show')
-         teacherReport.getReportTab().click({ force: true })
-         teacherReport.getStudent360ReportsTab().eq(1).wait(500).click().wait(500)
-         teacherReport.get360ReportTxt().should('have.text', '360˚ Reports')
-         teacherReport.getStudentsName().should('be.visible')
-         teacherReport.getSearchTxtField().type('ram').wait(2000)
-         teacherReport.getStudentsName().each((txt) => {
-             var studentName = txt.text()
-             if ( expect(studentName).to.eq('ram')) {
+    it('Tc__004 Verify that Teacher can search and select filters in 360 reports', function () {
+        // pre condition --- Create student
+        var randNumb = Math.floor(Math.random() * 100)
+        teacherDashboard.teacherLogout()
+        cy.wait(500)
+        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+        })
+        ReportDashboardPage.getUserTab().click()
+        ReportDashboardPage.getStudentsTab().click()
+        ReportDashboardPage.getAddStudentsIcon().click({ force: true })
+        ReportDashboardPage.getAddStudentPageFullNameTxtfield().click().type("ram")
+        ReportDashboardPage.getAddStudentPageGenderDropdown().click()
+        ReportDashboardPage.getAddStudentPageGenderList().click()
+        ReportDashboardPage.getAddStudentPagePrimaryDetailsContactNumb().click().type(9999999999)
+        ReportDashboardPage.getAddStudentPageSelectRelationDropdown().click()
+        ReportDashboardPage.getAddStudentPageSelectRelation().click()
+        ReportDashboardPage.getAddStudentPageGuardianNameTxtfield().click().type("veena")
+        ReportDashboardPage.getAddStudentPageGuardianContactNumb().click().type("8888888888")
+        ReportDashboardPage.getAddStudentPageAddressLine1TxtField().click().type("Bangalore")
+        ReportDashboardPage.getAddStudentPagePincodeTxtfield().click().type(561101).wait(1000)
+        ReportDashboardPage.getAddStudentButton().click()
+        ReportDashboardPage.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type("2012")
+        ReportDashboardPage.getAddStudentPageAdmissionNumbTxtfield().click().type(randNumb)
+        ReportDashboardPage.getAddStudentPageGradeDropdown().click()
+        teacherReport.getListOfGrade().click()
+        ReportDashboardPage.getAddStudentPageSectionDropdown().click()
+        teacherReport.getSectionList().click()
+        ReportDashboardPage.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(randNumb)
+        ReportDashboardPage.getAddStudentButton().click()
+        dashboard.logout()
+
+        // Actual condition --Verify that Teacher can search and select filters in 360 reports
+        cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
+            cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
+        })
+        teacherReport.getSideNavBar().invoke('show')
+        teacherReport.getReportTab().click({ force: true })
+        teacherReport.getStudent360ReportsTab().eq(1).wait(500).click().wait(500)
+        teacherReport.get360ReportTxt().should('have.text', '360˚ Reports')
+        teacherReport.getStudentsName().should('be.visible')
+        teacherReport.getSearchTxtField().type('ram').wait(2000)
+        teacherReport.getStudentsName().each((txt) => {
+            var studentName = txt.text()
+            if (expect(studentName).to.eq('ram')) {
                 teacherReport.get360ReportPageGradeDropdown().click()
                 teacherReport.getListOfGrade().click()
                 teacherReport.get360ReportPageSectionDropdown().click()
-                teacherReport.getSectionList().click() 
-             }
-         })
-         teacherReport.getStudentsName().each((Txt, index) => {
+                teacherReport.getSectionList().click()
+            }
+        })
+        teacherReport.getStudentsName().each((Txt, index) => {
             var StudentNames = Txt.text()
             if (StudentNames == 'ram') {
                 teacherReport.getViewReportBtn().eq(index).click()
-                cy.get('div[class*="StudentDetails_stdDetailHeadTitle"]').should('have.text','ram’s 360˚ Report')
+                cy.get('div[class*="StudentDetails_stdDetailHeadTitle"]').should('have.text', 'ram’s 360˚ Report')
             }
         })
 
