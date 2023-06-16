@@ -1,2 +1,15 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+<<<<<<< HEAD
 "passed","Fri Jun 16 16:09:09 IST 2023","Fri Jun 16 16:09:18 IST 2023","9377","","Teacher Notice board Validation","","","","E2E_01 Verify that School Teacher sees ""No Notice Found"" text when notices were not published",""
+=======
+"failed","Fri Jun 16 11:48:50 IST 2023","Fri Jun 16 11:49:37 IST 2023","46618","","Admin Report Validation","","","","Tc_009 Verify that School Admin can add the Health report in 360 reports",""
+"passed","Fri Jun 16 11:47:13 IST 2023","Fri Jun 16 11:47:25 IST 2023","12621","","Admin Report Validation","","","","Tc_005 Verify that School Admin can search and select filters in template  Template",""
+"skipped","Fri Jun 16 11:47:25 IST 2023","Fri Jun 16 11:47:26 IST 2023","26","","Admin Report Validation","","","","Tc_006 Verify that School Admin can Add results for respective students",""
+"passed","Fri Jun 16 11:45:27 IST 2023","Fri Jun 16 11:46:38 IST 2023","70842","","Admin Report Validation","","","","Tc_003 Verify that School Admin can Delete the Gradebook Template",""
+"passed","Fri Jun 16 11:43:45 IST 2023","Fri Jun 16 11:44:36 IST 2023","51295","","Admin Report Validation","","","","Tc_001 Verify that School Admin can Edit the TopSchool Gradebook Template",""
+"failed","Fri Jun 16 11:46:38 IST 2023","Fri Jun 16 11:47:13 IST 2023","34349","","Admin Report Validation","","","","Tc_004 Verify that School Admin can view the Gradebook Template",""
+"passed","Fri Jun 16 11:48:06 IST 2023","Fri Jun 16 11:48:50 IST 2023","43606","","Admin Report Validation","","","","Tc_008 Verify that School Admin can search and select filters in 360 reports",""
+"passed","Fri Jun 16 11:49:37 IST 2023","Fri Jun 16 11:49:53 IST 2023","15994","","Admin Report Validation","","","","Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports",""
+"passed","Fri Jun 16 11:47:26 IST 2023","Fri Jun 16 11:48:06 IST 2023","40831","","Admin Report Validation","","","","Tc_007 Verify that School Admin can search and select filters in Gradebook",""
+"passed","Fri Jun 16 11:44:36 IST 2023","Fri Jun 16 11:45:27 IST 2023","51386","","Admin Report Validation","","","","Tc_002 Verify that School Admin can Create the Gradebook Template",""
+>>>>>>> cea190716936c179757634a2fd669cf6db32f652

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"total":1,"items":[{"uid":"34f416f0eaf59c1357b0cc84ca9c6f37","name":"Teacher Notice board Validation","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
+=======
+{"total":1,"items":[{"uid":"4a2c94f39a40ba03421cf10862b87fe3","name":"Admin Report Validation","statistic":{"failed":2,"broken":0,"skipped":1,"passed":7,"unknown":0,"total":10}}]}
+>>>>>>> cea190716936c179757634a2fd669cf6db32f652
