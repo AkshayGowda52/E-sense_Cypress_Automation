@@ -267,19 +267,19 @@ describe("TeacherReports", function () {
             cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
         })
         ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
-    ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
-    ReportDashboardPage.get360ReportPageTitle().should('have.text', '360˚ Reports').wait(2000)
-    ReportDashboardPage.get360ReportPageGradeDropdown().click()
-    teacherReport.getAddNewReportPage_GradesLists().click()
-    ReportDashboardPage.get360ReportPageSectionDropdown().click()
-   teacherReport.getSectionsList().click().wait(2000)
-    ReportDashboardPage.get360ReportPageStudentList().each(($Txt, index) => {
+        ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+        ReportDashboardPage.get360ReportPageTitle().should('have.text', '360˚ Reports').wait(2000)
+        ReportDashboardPage.get360ReportPageGradeDropdown().click()
+        teacherReport.getAddNewReportPage_GradesLists().click()
+        ReportDashboardPage.get360ReportPageSectionDropdown().click()
+        teacherReport.getSectionsList().click().wait(2000)
+        ReportDashboardPage.get360ReportPageStudentList().each(($Txt, index) => {
         var StudentName = $Txt.text()
         if (StudentName =="kumar" + "" + randString ) {
           teacherReport.getViewReportBtn().eq(index).click({ force: true })
         }
-      })
-      teacherReport.getMyYearlyPerformanceTab().should('be.visible').click()
+        })
+        teacherReport.getMyYearlyPerformanceTab().should('be.visible').click()
               // validation step is pending
 
 
