@@ -22,6 +22,7 @@ describe("Admin Users Validation", function () {
     it('TC_Student_007 Verify that School admin can add Students successfully when entered a valid data', function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersStudentTab().click()
+        cy.reload()
         adminUsersPage.getStudentSearchTxtfld().should('be.visible')
         adminUsersPage.getAddtudentBtn().click()
         adminUsersPage.getStudentFullNameTxtFld().type(this.studentDetails.studentName)
@@ -53,6 +54,7 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
         adminUsersPage.getAdminUsersStudentTab().click()
+        ,cy.reload()
         adminUsersPage.getStudentSearchTxtfld().should('be.visible')
         adminUsersPage.getStudentBulkUploadBtn().click()
         cy.contains('Specify Grade & Section to Add Students').should('be.visible')
@@ -75,6 +77,7 @@ describe("Admin Users Validation", function () {
         adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
         adminUsersPage.getAdminUsersTeachersTab().click()
         adminUsersPage.getAdminUsersStudentTab().click()
+        cy.reload()
         adminUsersPage.getStudentSearchTxtfld().should('be.visible')
         adminUsersPage.getStudentBulkUploadBtn().click()
         cy.contains('Specify Grade & Section to Add Students').should('be.visible')
