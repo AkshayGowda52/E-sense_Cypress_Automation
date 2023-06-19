@@ -6,7 +6,6 @@ describe("Teacher_Support_Tickets",function(){
         cy.fixture("LMS/Credentials").then(function (credentials) {
             cy.teacherLogin(credentials.teacherUsername1, credentials.teacherPassword)
             this.credentials=credentials;
-
         })
     })
     it()
