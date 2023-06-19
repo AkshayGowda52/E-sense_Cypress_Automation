@@ -247,6 +247,10 @@ class adminUsersPage {
         return cy.xpath('//div[contains(@class,"TeacherDashboard_studentMeta")]/p[contains(text(),"' + teacherName + '")]/../../../../td/div/button[@aria-label="Delete Teacher"]')
     }
 
+    getStudentDltBtn(studentName) {
+        return cy.xpath('//div[contains(@class,"UserDashBoard_studentMeta")]/p[contains(text(),"'+studentName+'")]/../../../../td/div/button[@aria-label="Delete Student"]')
+    }
+
     getDeleteAccountBtn() {
         return cy.get('h6.MuiTypography-root').eq(1)
     }
@@ -493,6 +497,10 @@ class adminUsersPage {
         return cy.get('button.BulkUpload_bulkImport__spFpc')
     }
 
+    getStatetxtFldInNewTeacherCreation(){
+        return cy.get('input[name="state"]')
+    }
+
     //Business-Logic
     newTeacherCreation() {
         cy.get('body').click(0, 0)
@@ -516,9 +524,8 @@ class adminUsersPage {
         this.getContactNoFld().type("9797979797")
         this.getAddressline1Fld().type("Topschool")
         this.getPincodeFld().type("636401")
-        this.getDepartmentDrpDwn().click()
-        this.getDeptLst().first().click()
-        cy.wait(4000)
+        this.getStatetxtFldInNewTeacherCreation().click({force:true})
+        cy.wait(2000)
         this.getContinueBtn().click()
         cy.wait(3000)
         this.getDepartmentDrpDwn().click()
@@ -526,7 +533,7 @@ class adminUsersPage {
         this.getContinueBtn2().click()
         cy.wait(3000)
         this.getGradeDrpDwn().click()
-        this.getDeptLst().eq(7).click()
+        this.getDeptLst().eq(11).click()
         cy.get('body').click(0, 0)
         cy.wait(1000)
         this.getSectionCheckBx().click()

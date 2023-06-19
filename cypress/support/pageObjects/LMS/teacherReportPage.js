@@ -1,178 +1,178 @@
-class TeacherReport{
+class TeacherReport {
 
     // Tc_001 Verify that Teacher can add / edit the results in Students Gradebook  of the respective grades
-    getSideNavBar(){
+    getSideNavBar() {
         return cy.get('div[class="side-nav-content "]')
     }
 
-    getReportTab(){
+    getReportTab() {
         return cy.get('div[class="side-nav-content "] li').contains('Reports')
     }
 
-    getStudentGradeBookTab(){
+    getStudentGradeBookTab() {
         return cy.get('div[class="content-report-sect"] [class="popover-arrow"]')
     }
 
-    getEditBtn(){
+    getEditBtn() {
         return cy.xpath('//button[contains(.,"Edit")]')
     }
 
-    getTheoryTxtField(){
+    getTheoryTxtField() {
         return cy.get('div[class="schTableInputFoc"]>input[type="number"]').eq(0)
     }
 
-    getPracticleTxtField(){
+    getPracticleTxtField() {
         return cy.get('div[class="schTableInputFoc"]>input[type="number"]').eq(1)
     }
 
-    getCoScholasticActivitiesMarksTxtField(){
+    getCoScholasticActivitiesMarksTxtField() {
         return cy.get('td[class*="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium coSChWidCell"]').eq(0).next()
     }
 
-    getRemarksTxtField(){
+    getRemarksTxtField() {
         return cy.get('textarea[id="outlined-multiline-static"]')
     }
 
-    getStudentFullName(){
+    getStudentFullName() {
         return cy.get('tr[role="checkbox"] td:nth-child(4)')
     }
 
-    getArrowForwardIcon(){
+    getArrowForwardIcon() {
         return cy.get('[data-testid="ArrowForwardIosIcon"]')
     }
-    getTotalPercentage(){
+    getTotalPercentage() {
         return cy.get('div[class*="StudentGradeBook_stdGrdBkCrdStatSectInfo"]>h1').eq(0)
     }
 
-    getStudentResult(){
+    getStudentResult() {
         return cy.get('div[class*="StudentGradeBook_stdGrdBkCrdStatSectInfo"]>h1').eq(3)
     }
 
-    getSaveBtn(){
+    getSaveBtn() {
         return cy.xpath('//button[contains(.,"Save")]')
     }
 
-    getUpdatedStatus(){
+    getUpdatedStatus() {
         return cy.xpath('//td[contains(.,"Updated")]')
     }
 
-    getCancelBtn(){
+    getCancelBtn() {
         return cy.xpath('//button[contains(.,"Cancel")]')
     }
 
-    getShowGradingSystemDropdown(){
+    getShowGradingSystemDropdown() {
         return cy.xpath('//button[text()="Show" and text()= " Grading System"]')
     }
 
-    getGradeSystemLists(){
+    getGradeSystemLists() {
         return cy.get('table[class="table table-hover"]').last().find('tr td')
     }
 
-    getPreviewANDprintBtn(){
+    getPreviewANDprintBtn() {
         return cy.xpath('//button[contains(.,"Preview & Print")]')
     }
 
-    getPreviewANDprintList(){
+    getPreviewANDprintList() {
         return cy.get('p[class*="MuiTypography-root MuiTypography"] div h6')
     }
 
-    getGradesList(){
+    getGradesList() {
         return cy.get('p[class*="MuiTypography-root MuiTypography-body1 n"]')
     }
 
-    getPublishedStatus(){
+    getPublishedStatus() {
         return cy.xpath('//td[contains(.,"Published")]')
     }
 
-    getListOfGrade(){
+    getListOfGrade() {
         return cy.get('[role="listbox"] li').contains('Grade 2')
     }
 
-    getSectionList(){
+    getSectionList() {
         return cy.get('[role="listbox"] li').contains('A')
     }
 
-    getSaveANDcountinueBtn(){
+    getSaveANDcountinueBtn() {
         return cy.xpath('//button[contains(.,"Save and Continue ")]')
     }
 
 
-//Tc__003 Verify that Teacher can search and select filters in Gradebook
-    getSearchTxtField(){
+    //Tc__003 Verify that Teacher can search and select filters in Gradebook
+    getSearchTxtField() {
         return cy.get('input[placeholder="Search a student..."]')
     }
 
-    getAlltermsDropdown(){
+    getAlltermsDropdown() {
         return cy.xpath('//div[@class="gradeBookTopCntSect"]/div[contains(.,"All terms")]')
     }
 
-    getAlltermsLists(){
+    getAlltermsLists() {
         return cy.get('ul[role="listbox"] li').contains('Term 1')
     }
-    
+
 
     //Tc__004 Verify that Teacher can search and select filters in 360 reports
 
-    get360ReportPageGradeDropdown(){
+    get360ReportPageGradeDropdown() {
         return cy.get('div[aria-haspopup="listbox"] ').eq(0)
     }
 
-    get360ReportPageSectionDropdown(){
+    get360ReportPageSectionDropdown() {
         return cy.get('div[aria-haspopup="listbox"] ').eq(1)
     }
 
 
     // Tc__005 Verify that School Admin can add the Health report in 360 reports
 
-    getStudent360ReportsTab(){
+    getStudent360ReportsTab() {
         return cy.get('div[class="content-report-sect"] [class="popover-arrow"]')
     }
 
-    get360ReportTxt(){
+    get360ReportTxt() {
         return cy.xpath('//p[contains(.,"360˚ Reports")]')
     }
 
-    getStudentsName(){
+    getStudentsName() {
         return cy.get('tbody td:nth-child(3)')
     }
 
-    getViewReportBtn(){
+    getViewReportBtn() {
         return cy.get('[class="viewBtn"]')
     }
 
-    getAddReportsBtn(){
+    getAddReportsBtn() {
         return cy.xpath('//button[contains(.,"Add Reports")]')
     }
 
-    getAddNewReportTxt(){
+    getAddNewReportTxt() {
         return cy.contains('Add New Report')
     }
 
-    getSchoolTypeDropdown(){
+    getSchoolTypeDropdown() {
         return cy.get('form[id="deptForm"] div[id="demo-simple-select"]').first()
     }
 
-    getSchoolLists(){
+    getSchoolLists() {
         return cy.get('ul[role="listbox"]>li').contains('Middle School')
     }
 
-    getGradesDropdown(){
+    getGradesDropdown() {
         return cy.get('form[id="deptForm"] div[id="demo-simple-select"]').last()
     }
 
-    getAddNewReportPage_GradesLists(){
+    getAddNewReportPage_GradesLists() {
         return cy.get('ul[role="listbox"]>li').contains('Grade 2')
     }
 
-    getWeightTxtField(){
+    getWeightTxtField() {
         return cy.get('form[id="deptForm"] input[class*="MuiOutlinedInput-input MuiInputBase-input"]').first()
     }
 
-    getHeightTxtField(){
+    getHeightTxtField() {
         return cy.get('form[id="deptForm"] input[class*="MuiOutlinedInput-input MuiInputBase-input"]').last()
     }
 
-    getAddBtn(){
+    getAddBtn() {
         return cy.get('button[type="submit"]')
     }
 
