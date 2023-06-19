@@ -420,7 +420,7 @@ describe('Admin Report Validation', function () {
   })
 
 
-  it.only('Tc_008 Verify that School Admin can search and select filters in 360 reports', function () {
+  it('Tc_008 Verify that School Admin can search and select filters in 360 reports', function () {
 
     // pre condition --- Create student
     var RandNum = Math.floor(Math.random() * 10)

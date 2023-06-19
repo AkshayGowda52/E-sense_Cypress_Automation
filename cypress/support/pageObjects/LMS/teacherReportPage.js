@@ -176,6 +176,15 @@ class TeacherReport {
         return cy.get('button[type="submit"]')
     }
 
+    //Tc 007
+    getMyYearlyPerformanceTab(){
+        return cy.get('//button[contains(.,"My Yearly Performance")]')
+    }
+
+    getSectionsList(){
+        return cy.get('[role="listbox"] li').contains('A')
+    }
+
 
 
 
