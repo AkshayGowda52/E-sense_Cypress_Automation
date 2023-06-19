@@ -129,7 +129,7 @@ class adminDashboardPage {
     }
 
     getStudentRegistrationCountPoint(){
-        return cy.get('g>circle')
+        return cy.get('g>path').eq(0)
     }
 
     //Logout-admin
