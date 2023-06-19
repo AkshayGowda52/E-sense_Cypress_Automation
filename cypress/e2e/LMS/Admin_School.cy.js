@@ -259,7 +259,7 @@ describe("Admin School Validation", function () {
 
   })
 
-  it('admin school 07 Verify that School Admin can Create the Auto time table successfully',function(){
+  it.only('admin school 07 Verify that School Admin can Create the Auto time table successfully',function(){
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
@@ -303,8 +303,24 @@ describe("Admin School Validation", function () {
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     adminschoolpage.getAdminTimetableManagement().click()
     timeTableManagement.getTimetableManagmentText().should('have.text','Timetable Management')
+    cy.wait(3000)
+    timeTableManagement.getTimeTableManagementTypes().each((TypeTexts)=>{
+      var typetexts = TypeTexts.text()
+      cy.log(typetexts)
+      if(typetexts === 'Manual'){
+        timeTableManagement.getTimeTableManagementStatus().should('be.visible')
+        timeTableManagement.getTimeTableManagementActionEditBtns().should('be.visible')
+        timeTableManagement.getTimeTableManagementActionDeleteBtns().should('be.visible')
+      }
+    })
+    cy.wait(1000)
+    timeTableManagement.getTimeTableManagementActionEditBtns().eq(0).click({force:true})
+    cy.wait(2000)
+    timeTableManagement.getTimeTableManagementClassCardSections().eq(45).click()
   })
-  
+
+
+
 })
 
     //Akshay

@@ -43,6 +43,26 @@ class timeTableManagement{
     getGenerateTimeSlotsBtn(){
         return cy.get('button.continue-btn')
     }
+
+    getTimeTableManagementTypes(){
+        return cy.xpath('//table[@aria-label="simple table"]//tbody//tr//td[5]')
+    }
+
+    getTimeTableManagementStatus(){
+        return cy.xpath("//table[@aria-label='simple table']//tbody//tr//td//p[text()='Published']")
+    }
+
+    getTimeTableManagementActionEditBtns(){
+        return cy.get('div.adminTimTblActCell span svg circle')
+    }
+
+    getTimeTableManagementActionDeleteBtns(){
+        return cy.get('div.adminTimTblActCell span img')
+    }
+
+    getTimeTableManagementClassCardSections(){
+        return cy.get('div.classCardSect')
+    }
 }
 
 module.exports = new timeTableManagement()
