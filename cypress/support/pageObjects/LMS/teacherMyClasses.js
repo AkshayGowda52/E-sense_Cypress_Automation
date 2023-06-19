@@ -76,6 +76,54 @@ class TeacherMyClasses
         return cy.xpath("//h1[contains(text(),'Create Live Class')]")
 
     }
-    
+    getWorkLoadparticularday(){
+        return cy.xpath('(//div[@data-test-id="CircularProgressbarWithChildren"])[2]')
+    }
+    getCreatehomeWorkthroughWorkLoad(){
+        return cy.xpath("//div[text()='Create homework']")
+    }
+    getCreateHomeWorkPopup(){
+        return cy.xpath("//h1[text()='Create Homework']")
+    }
+    getHomeWorkTitleTextField(){
+        return cy.xpath("//label[text()='Homework Title*']/following-sibling::div/input[@type='text']")
+    }
+    getDescriptionTextareaField(){
+        return cy.xpath("//label[contains(text(),'Description')]/following-sibling::div/textarea[1]")
+    }
+    getDueDateButton(){
+        return cy.xpath('//input[@placeholder="dd/mm/yyyy"]')
+    }
+    getDueTimeButton(){
+        return cy.xpath('//input[@placeholder="h:mm (a|p)m"]')
+    }
+    getApproxTimeRequiredTextField(){
+        return cy.xpath("//label[contains(text(),'Approx Time Required*')]/following-sibling::div/div")
+    }
+    getApproxTimeRequiredList(time){
+        return cy.xpath("//li[text()='"+time+" mins']")
+    }
+    getSaveButtonInCreateHomeworkPopup(){
+        return cy.xpath("//button[text()='Save']")
+    }
+    getHomeworkCreatedMsg(){
+        return cy.xpath("//div[text()='Homework Created!']")
+    }
+    getVerifyHomeworkCreated(homeWork){
+        return cy.xpath("//h6[text()='"+homeWork+"']")
+    }
+    getCreateHomeworkContent(){
+        return cy.xpath('//div[@class="add_homework_class-content"]')
+    }
+    getHomeWorkDeleteIcon(){
+        return cy.xpath('(//img[@aria-label="Delete"])[1]')
+    }
+    getDeleteButtonInDoUWantDeleteHomeWorkPopup(){
+        return cy.xpath('//button[@data-testid="delete"]')
+    }
+    getHomeworkDeletedMsg(){
+        return cy.xpath("//div[text()='Homework deleted!']")
+    }
+
 }
 module.exports=new TeacherMyClasses()
