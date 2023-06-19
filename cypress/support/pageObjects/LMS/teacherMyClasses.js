@@ -60,5 +60,22 @@ class TeacherMyClasses
     getLiveClassDeletedSuccessfullymsg(){
         return cy.xpath("//div[text()='Live Class Deleted successfully']")
     }
+    getTeacherMyClassesTab(){
+        return cy.xpath("//div[contains(text(),'My Classes')]")
+    }
+    getParticularStudentTab(){
+        return cy.xpath('(//div[contains(@class,"popper-sub-student")])[1]')
+    }
+    getLiveClassesTabInMyClasses(){
+        return cy.xpath("//button[text()='Live Classes']")
+    }
+    getCreateNewLiveClassInMyClasses(){
+        return cy.xpath("//button[text()='Create New Live Class']")
+    }
+    getCreateLiveClassPage(){
+        return cy.xpath("//h1[contains(text(),'Create Live Class')]")
+
+    }
+    
 }
 module.exports=new TeacherMyClasses()
