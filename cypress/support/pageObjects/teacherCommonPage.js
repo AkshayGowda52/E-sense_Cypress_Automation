@@ -16,6 +16,10 @@ getTeacherMyProfileTab(){
 getTeacherMyCalenderTab(){
     return cy.xpath("//div[text()='My Calendar']")
 }
+getTeacherMyClassesTab(){
+    return cy.xpath("//div[contains(text(),'My Classes')]")
+}
+
 
 
 }

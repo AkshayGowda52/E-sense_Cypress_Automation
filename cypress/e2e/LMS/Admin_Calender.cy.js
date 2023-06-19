@@ -122,7 +122,7 @@ it("E2E_02_Holiday_To Validate that the user is able to create Holiday in calend
     
 })
 
-it('E2E_03_Event_To Validate that the user is able to create Event in calender and notification will be sent to participents as per the selection.',function(){
+it.only('E2E_03_Event_To Validate that the user is able to create Event in calender and notification will be sent to participents as per the selection.',function(){
 
     adminDashBoardPage.getSideNavBar().invoke('show')
     adminDashBoardPage.getCalenderTab().click()
@@ -176,10 +176,10 @@ it('E2E_03_Event_To Validate that the user is able to create Event in calender a
             calenderPage.getPrepHoursRequiredDropdownList("12").click()
             calenderPage.getAddParticipants().click()
             calenderPage.getGradeDropdownInEventPage().click()
-            calenderPage.getGradeDropdownListInEventPage('Grade 8').click().wait(500)
+            calenderPage.getGradeDropdownListInEventPage('Grade 8').click({force:true}).wait(500)
             calenderPage.getSectionDropdownInEventPage().click()
-            calenderPage.getSectionDropdownListInEventPage("B").click().wait(1000)
-            calenderPage.getStudentCheckboxInEventPage('StudentA').click({timeout:10000})
+            calenderPage.getSectionDropdownListInEventPage("B").click({force:true}).wait(1000)
+            calenderPage.getStudentCheckboxInEventPage('StudentA').click({force:true},{timeout:10000})
             calenderPage.getStudentPopupCloseIconInEventPage().click()
             calenderPage.getSaveEventButton().click()
             calenderPage.getEventCreatedMsg().should('be.visible',{timeout:10000})

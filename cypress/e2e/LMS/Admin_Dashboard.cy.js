@@ -150,7 +150,7 @@ describe("Admin School Validation", function () {
     })
   })
 
-  it.only("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
+  it("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
     cy.wait(2000)
     quickLinks.getMenuSchoolImg().click()
     quickLinks.getTimetableManagementBtn().contains('School Infrastructure').should('be.visible').click()
