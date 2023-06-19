@@ -430,7 +430,7 @@ describe('Admin Report Validation', function () {
 
   })
 
-  it.only("Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports", function () {
+  it("Tc_011 Verify that School Admin is able to view the ELA's evalutaed by Teacher in 360 reports", function () {
 
     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
     ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
