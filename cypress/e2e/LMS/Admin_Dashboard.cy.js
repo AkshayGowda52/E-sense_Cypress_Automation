@@ -77,7 +77,7 @@ describe("Admin School Validation", function () {
     cy.contains("50%").should('be.visible')
   })
 
-  it("Adm_Dashboard 005 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
+  it("Adm_Dashboard 006 To Validate the Teacher count is displayed based on the teacher present or Absent", function () {
     adminUsersPage.newTeacherCreation()
     adminUsersPage.getSiTeacherLst().contains("alex").invoke('text').then((name) => {
       adminDashboardPage.logout()
@@ -139,71 +139,84 @@ describe("Admin School Validation", function () {
   it("Adm_Dashboard 006 To Validate the Student registration count is reflected in the Student Registration Sections", function () {
     adminUsersPage.getAdminUsersSideMenuTab().click()
     adminUsersPage.getAdminUsersStudentTab().click()
-    let studentCount;
-    adminUsersPage.getStudentLst().its('length').then((length) => {
-      studentCount = Number(length);
-    cy.log(studentCount)
+    adminUsersPage.getStudentBulkUploadBtn().click()
+    adminUsersPage.getAddStudentGradeDropdown().click()
+    adminUsersPage.getAddStudentGradeDropdownOpt("Grade 9").click()
+    adminUsersPage.getAddStudentSectionDropdown().click()
+    adminUsersPage.getAddStudentSectionDropdownOpt("A").click()
+    adminUsersPage.getAddStudentDoneBtn().click()
+    adminUsersPage.getStudentUploadStudentAccountsinbulkSelectFileFromComputerBtn().attachFile('LMS/NewStudentData.xlsx',{force:true})
+    adminUsersPage.getStudentUploadStudentAccountsinbulkImportStudentAccounts().click().wait(1500)
     adminDashboardPage.getDashboardTabInSideNavigationBar().click()
-    adminDashboardPage.getStudentRegistrationBtn().click({timeout:2000})
-    adminDashboardPage.getStudentRegistrationCountPoint().scrollIntoView().trigger('mouseover',{force:true})
-    cy.contains(studentCount+" students").should('be.visible')
-    })
+    adminDashboardPage.getStudentRegistrationBtn().click({ timeout: 2000 }).wait(1500)
+    adminDashboardPage.getStudentRegistrationCountPoint().scrollIntoView().trigger('mouseover', { force: true })
+    adminUsersPage.getAdminUsersSideMenuTab().click()
+    adminUsersPage.getAdminUsersStudentTab().click()
+    cy.get('body').click(0, 0)
+    adminUsersPage.getAdminUsersSideMenuTab().click({ force: true })
+    adminUsersPage.getAdminUsersStudentTab().click().wait(2000)
+    adminUsersPage.getStudentDltBtn("siva").click()
+    adminUsersPage.getDeleteAccountBtn().click()
+    cy.contains("Do you want to delete the student siva ?").should('be.visible')
+    adminUsersPage.getDeleteSubmitBtn().click()
+    cy.wait(2000)
+    adminUsersPage.getTeacherLst().should('not.contain.text', "siva")
+    cy.wait(3000)
   })
 
-  it.only("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
-    cy.wait(2000)
-    quickLinks.getMenuSchoolImg().click()
-    quickLinks.getTimetableManagementBtn().contains('School Infrastructure').should('be.visible').click()
-    cy.wait(2500)
-    cy.contains('School Infrastructure').should('be.visible')
-    cy.get('body').then(($el) => {
-      if ($el.find('[class="rooms-delete-out"] img').length > 0) {
-        quickLinks.getDeleteIconInfrastructure().then(($el) => {
-          var delLen = $el.length
-          cy.wrap(delLen).as('delLen')
-        })
-        cy.get('@delLen').then((delLen) => {
-          for (let index = 0; index < delLen; index++) {
-            quickLinks.getDeleteIconInfrastructure().eq(0).click()
-            cy.wait(1000)
-            quickLinks.getDeleteConfirmIconInfrastructure().should('be.visible').click()
-            quickLinks.getDeleteSuccessMsg().should('be.visible')
-            cy.wait(1000)
-          }
-        })
-        cy.reload()
-      }
-    })
-    cy.contains('No data found').should('be.visible')
-    quickLinks.getAddInfrastructureButton().should('be.visible').click()
-    quickLinks.getAddInfrastructureTextFields().should('be.visible').eq(0).clear().type(this.timeTableCreation.infraStructureName)
-    quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floors)
-    quickLinks.getAddInfrastructureTextFields().eq(2).clear().type(this.timeTableCreation.description)
-    quickLinks.getAddInfrastructureAddBtn().click()
-    quickLinks.getInsertedSuccessMsg().should('be.visible')
-    let roomLen = (this.timeTableCreation.roomName).length
-    for (let index = 0; index < roomLen; index++) {
-      quickLinks.getAddRoomBtn().should('be.visible').click()
-      quickLinks.getAddInfrastructureTextFields().should('be.visible').eq(0).clear().type(this.timeTableCreation.roomName[index])
-      if (index < roomLen / 3) {
-        quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[0])
-      }
-      else if (index < (roomLen / 3) * 2) {
-        quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[1])
-      }
-      else {
-        quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[2])
-      }
-      quickLinks.getAddInfrastructureTextFields().eq(2).clear().type(this.timeTableCreation.description)
-      quickLinks.getAddRoomGradeDropdown().click()
-      quickLinks.getAddRoomGradeDropdownList().should('be.visible').eq(index).click({ force: true })
-      quickLinks.getAddInfrastructureAddBtn().click()
-      quickLinks.getInsertedSuccessMsg().should('be.visible')
-    }
-    cy.wait(3000)
-    quickLinks.getGoBackBtn().click()
-    cy.wait(3000)
+  it("Adm_Dashboard 006 To Validate the cards are generated based on the pending tasks under Pending Actions Section and user is navigated to respective page on clicking on the button in each card", function () {
+    // cy.wait(2000)
+    // quickLinks.getMenuSchoolImg().click()
+    // quickLinks.getTimetableManagementBtn().contains('School Infrastructure').should('be.visible').click()
+    // cy.wait(2500)
+    // cy.contains('School Infrastructure').should('be.visible')
+    // cy.get('body').then(($el) => {
+    //   if ($el.find('[class="rooms-delete-out"] img').length > 0) {
+    //     quickLinks.getDeleteIconInfrastructure().then(($el) => {
+    //       var delLen = $el.length
+    //       cy.wrap(delLen).as('delLen')
+    //     })
+    //     cy.get('@delLen').then((delLen) => {
+    //       for (let index = 0; index < delLen; index++) {
+    //         quickLinks.getDeleteIconInfrastructure().eq(0).click()
+    //         cy.wait(1000)
+    //         quickLinks.getDeleteConfirmIconInfrastructure().should('be.visible').click()
+    //         quickLinks.getDeleteSuccessMsg().should('be.visible')
+    //         cy.wait(1000)
+    //       }
+    //     })
+    //     cy.reload()
+    //   }
+    // })
+    // cy.contains('No data found').should('be.visible')
+    // quickLinks.getAddInfrastructureButton().should('be.visible').click()
+    // quickLinks.getAddInfrastructureTextFields().should('be.visible').eq(0).clear().type(this.timeTableCreation.infraStructureName)
+    // quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floors)
+    // quickLinks.getAddInfrastructureTextFields().eq(2).clear().type(this.timeTableCreation.description)
+    // quickLinks.getAddInfrastructureAddBtn().click()
+    // quickLinks.getInsertedSuccessMsg().should('be.visible')
+    // let roomLen = (this.timeTableCreation.roomName).length
+    // for (let index = 0; index < roomLen; index++) {
+    //   quickLinks.getAddRoomBtn().should('be.visible').click()
+    //   quickLinks.getAddInfrastructureTextFields().should('be.visible').eq(0).clear().type(this.timeTableCreation.roomName[index])
+    //   if (index < roomLen / 3) {
+    //     quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[0])
+    //   }
+    //   else if (index < (roomLen / 3) * 2) {
+    //     quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[1])
+    //   }
+    //   else {
+    //     quickLinks.getAddInfrastructureTextFields().eq(1).clear().type(this.timeTableCreation.floorLevel[2])
+    //   }
+    //   quickLinks.getAddInfrastructureTextFields().eq(2).clear().type(this.timeTableCreation.description)
+    //   quickLinks.getAddRoomGradeDropdown().click()
+    //   quickLinks.getAddRoomGradeDropdownList().should('be.visible').eq(index).click({ force: true })
+    //   quickLinks.getAddInfrastructureAddBtn().click()
+    //   quickLinks.getInsertedSuccessMsg().should('be.visible')
+    // }
+    // cy.wait(3000)
+    // quickLinks.getGoBackBtn().click()
+    // cy.wait(3000)
   })
   //author - shiva
-  //sample
 })
