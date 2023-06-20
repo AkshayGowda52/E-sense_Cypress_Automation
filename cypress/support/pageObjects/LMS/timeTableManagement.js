@@ -63,6 +63,18 @@ class timeTableManagement{
     getTimeTableManagementClassCardSections(){
         return cy.get('div.classCardSect')
     }
+
+    getSchoolStartingTimeBtns(){
+        return cy.get('input.MuiInputBase-inputAdornedEnd')
+    }
+
+    getGeneratedTimetableGradeText(){
+        return cy.get('div.text-center h1')
+    }
+
+    getGeneratedTimetableWeeks(){
+        return cy.get('div.mbsc-schedule-resource-group')
+    }
 }
 
 module.exports = new timeTableManagement()

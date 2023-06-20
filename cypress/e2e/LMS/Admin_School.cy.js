@@ -6,6 +6,7 @@ const schoolInfrastructuresPage = require('../../support/pageObjects/LMS/schoolI
 const curriculumbuilderPage = require('../../support/pageObjects/LMS/curriculumBuilderPage')
 const adminaccountsPage = require('../../support/pageObjects/LMS/adminAccountsPage')
 const timeTableManagement = require('../../support/pageObjects/LMS/timeTableManagement')
+const calenderPage = require('../../support/pageObjects/LMS/adminCalenderPage.js')
 
 describe("Admin School Validation", function () {
 
@@ -65,7 +66,7 @@ describe("Admin School Validation", function () {
         cy.wait(1000)
         cy.get('body').click(0, 0)
         cy.wait(3000)
-        gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({force:true})
+        gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({ force: true })
         cy.wait(2000)
         adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
         gradeAndSubjectPage.getGrades().each(($el, index, $List) => {
@@ -127,31 +128,31 @@ describe("Admin School Validation", function () {
     gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn().click()
   })
 
-  it('admin school 003 Verify that School admin can add the School infracture successfully',function(){
+  it('admin school 003 Verify that School admin can add the School infracture successfully', function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     admin_Schoolpage.getSchoolInfrastructures().click()
-    schoolInfrastructuresPage.getInfrastructureTitle().should('have.text',"School Infrastructure")
+    schoolInfrastructuresPage.getInfrastructureTitle().should('have.text', "School Infrastructure")
     schoolInfrastructuresPage.getAddInfrastructureBttn().click()
-    schoolInfrastructuresPage.getPopUpAddInfrastructureTitle().should('have.text',"Add Infrastructure")
+    schoolInfrastructuresPage.getPopUpAddInfrastructureTitle().should('have.text', "Add Infrastructure")
     schoolInfrastructuresPage.getInfrastructureNameTextField().type("testyantra")
-    schoolInfrastructuresPage.getInfrastructureNameTextField().invoke('val').then((text)=>{
-      var infrastructurename =text
+    schoolInfrastructuresPage.getInfrastructureNameTextField().invoke('val').then((text) => {
+      var infrastructurename = text
       cy.wrap(infrastructurename).as('infrastructurename')
     })
     schoolInfrastructuresPage.getNumberofFloorsTextField().type("10")
     schoolInfrastructuresPage.getDiscriptionTextField().type("Good infrastructure")
     schoolInfrastructuresPage.getaddbttn().click()
     cy.wait(1000)
-    schoolInfrastructuresPage.getAddInfrastructureInsertedSuccessfully().should('have.text',"Inserted Successfully")
-    schoolInfrastructuresPage.getInfrastructureTitle().should('have.text',"School Infrastructure")
+    schoolInfrastructuresPage.getAddInfrastructureInsertedSuccessfully().should('have.text', "Inserted Successfully")
+    schoolInfrastructuresPage.getInfrastructureTitle().should('have.text', "School Infrastructure")
     cy.wait(2000)
-    schoolInfrastructuresPage.getInfrastructureNameTexts().each(($el,index,$list)=>{
+    schoolInfrastructuresPage.getInfrastructureNameTexts().each(($el, index, $list) => {
       var infraNames = $el.text()
-      if(infraNames === "testyantra"){
+      if (infraNames === "testyantra") {
         schoolInfrastructuresPage.getAddRoomBttn().eq(index).click()
-        schoolInfrastructuresPage.getAddRoomPopUpTitle().should('have.text',"Add Room")
+        schoolInfrastructuresPage.getAddRoomPopUpTitle().should('have.text', "Add Room")
         schoolInfrastructuresPage.getRoomNameTextField().eq(0).type("Kannada")
         schoolInfrastructuresPage.getRoomNameTextField().eq(1).type("1")
         schoolInfrastructuresPage.getGradeDropDownBttn().click()
@@ -165,15 +166,15 @@ describe("Admin School Validation", function () {
   })
 
 
-  it("admin school 04 Verify that School admin can create the Curriculum successfully for the Grades selected as part fo license",function(){
+  it("admin school 04 Verify that School admin can create the Curriculum successfully for the Grades selected as part fo license", function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     adminschoolpage.getCurriculumBuilder().click()
-    curriculumbuilderPage.getCurriculumBuilderPageTitleText().should('have.text','Curriculum Builder')
-    curriculumbuilderPage.getTopSchoolTabText().should('have.text',"TopSchool")
+    curriculumbuilderPage.getCurriculumBuilderPageTitleText().should('have.text', 'Curriculum Builder')
+    curriculumbuilderPage.getTopSchoolTabText().should('have.text', "TopSchool")
     curriculumbuilderPage.getMySchoolTab().click()
-    curriculumbuilderPage.getMySchoolGradesText().each(($el,index,$list)=>{
+    curriculumbuilderPage.getMySchoolGradesText().each(($el, index, $list) => {
       let count = $el.length
       for (let i = 0; i <= count; i++) {
         curriculumbuilderPage.getViewDetailsBttn().eq(index).click()
@@ -194,28 +195,28 @@ describe("Admin School Validation", function () {
     curriculumbuilderPage.getCurriculumApprovePopUpText().should('be.visible')
     curriculumbuilderPage.getCurriculumApproveCloseBtn().click()
 
-    curriculumbuilderPage.getMySchoolGradesText().each(($el1,index,$list)=>{
-        curriculumbuilderPage.getViewDetailsBttn().eq(index).click()
-        cy.get('.Done').should('be.visible')
-        cy.wait(1000)
+    curriculumbuilderPage.getMySchoolGradesText().each(($el1, index, $list) => {
+      curriculumbuilderPage.getViewDetailsBttn().eq(index).click()
+      cy.get('.Done').should('be.visible')
+      cy.wait(1000)
     })
   })
 
-  it("admin school 05 Verify that School admin can add new Admin accounts successfully with granting access per module required",function(){
+  it("admin school 05 Verify that School admin can add new Admin accounts successfully with granting access per module required", function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     adminschoolpage.getAdminAccounts().click()
-    adminaccountsPage.getAdminAccountText().eq(0).should('have.text','Admin Accounts')
+    adminaccountsPage.getAdminAccountText().eq(0).should('have.text', 'Admin Accounts')
     adminaccountsPage.getAddnewBtn().click()
-    adminaccountsPage.getAddNewRolePopUpText().should('contain.text','Add New Role')
+    adminaccountsPage.getAddNewRolePopUpText().should('contain.text', 'Add New Role')
     adminaccountsPage.getDesignationNameTextField().type("HOD")
-    adminaccountsPage.getDesignationNameTextField().invoke('val').then((text)=>{
+    adminaccountsPage.getDesignationNameTextField().invoke('val').then((text) => {
       var designationName = text
       cy.log(designationName)
       cy.wrap(designationName).as('designationName')
     })
-    adminaccountsPage.getViewEditApprovalCheckBox().click({multiple:true})
+    adminaccountsPage.getViewEditApprovalCheckBox().click({ multiple: true })
     adminaccountsPage.getAddRolePopUpBtn().click()
     cy.wait(4000)
     adminaccountsPage.getAdminTabBtn().click()
@@ -241,11 +242,11 @@ describe("Admin School Validation", function () {
     cy.wait(4000)
     adminaccountsPage.getAdminContinueBtn().click()
     cy.wait(3000)
-    adminaccountsPage.getAdminAccountTableRoleText().eq(0).then((roleText)=>{
+    adminaccountsPage.getAdminAccountTableRoleText().eq(0).then((roleText) => {
       var roletext = roleText.text()
       cy.log(roletext)
-      cy.get('@designationName').then((designationname)=>{
-      cy.log(roletext)
+      cy.get('@designationName').then((designationname) => {
+        cy.log(roletext)
         expect(designationname).to.eq(roletext)
       })
     })
@@ -259,16 +260,40 @@ describe("Admin School Validation", function () {
 
   })
 
-  it.only('admin school 07 Verify that School Admin can Create the Auto time table successfully',function(){
+  it.only('admin school 07 Verify that School Admin can Create the Auto time table successfully', function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     adminschoolpage.getAdminTimetableManagement().click()
-    timeTableManagement.getTimetableManagmentText().should('have.text','Timetable Management')
+    timeTableManagement.getTimetableManagmentText().should('have.text', 'Timetable Management')
     timeTableManagement.getTypeText().should('be.visible')
     timeTableManagement.getStatus().should('be.visible')
     timeTableManagement.getGenerateTimeTable().click()
     timeTableManagement.getCheckBtns().eq(1).should('be.checked')
+    timeTableManagement.getSchoolStartingTimeBtns().eq(2).click()
+
+    for (let i = 0; i < 3; i++) {
+
+      calenderPage.getBody().type('{downArrow}')
+      cy.wait(500)
+
+    }
+    calenderPage.getAMButton().click()
+    timeTableManagement.getSchoolStartingTimeBtns().eq(2).click()
+    timeTableManagement.getSchoolStartingTimeBtns().eq(3).click()
+    cy.wait(3000)
+    // calenderPage.getPMButton().eq(1).click({ force: true })
+    cy.get('.css-sfp64 > .MuiTypography-root').click()
+    cy.wait(500)
+    timeTableManagement.getSchoolStartingTimeBtns().eq(3).click()
+    cy.wait(500)
+    timeTableManagement.getSchoolStartingTimeBtns().eq(3).click()
+    for (let j = 0; j < 8; j++) {
+      cy.get('body').type('{downArrow}')
+      cy.wait(500)
+
+    }
+    timeTableManagement.getSchoolStartingTimeBtns().eq(3).click()
     timeTableManagement.getDropDowns().eq(0).click()
     timeTableManagement.getDayWeeksDropDownLists().contains('6').click()
     timeTableManagement.getDropDowns().eq(1).click()
@@ -295,31 +320,33 @@ describe("Admin School Validation", function () {
     timeTableManagement.getDropDowns().eq(9).click()
     timeTableManagement.getRoomLists().contains("6th").click()
     timeTableManagement.getGenerateTimeSlotsBtn().click()
+    cy.wait(4000)
+    timeTableManagement.getGeneratedTimetableGradeText().should('contain','Grade 5 - A')
+    var weeklength = timeTableManagement.getGeneratedTimetableWeeks().length()
+    cy.log(weeklength)
 
   })
 
-  it('admin school 08 Verify that School Admin can Update and republish the Manual time table which is published already',function(){
+  it('admin school 08 Verify that School Admin can Update and republish the Manual time table which is published already', function () {
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     adminschoolpage.getAdminTimetableManagement().click()
-    timeTableManagement.getTimetableManagmentText().should('have.text','Timetable Management')
+    timeTableManagement.getTimetableManagmentText().should('have.text', 'Timetable Management')
     cy.wait(3000)
-    timeTableManagement.getTimeTableManagementTypes().each((TypeTexts)=>{
+    timeTableManagement.getTimeTableManagementTypes().each((TypeTexts) => {
       var typetexts = TypeTexts.text()
       cy.log(typetexts)
-      if(typetexts === 'Manual'){
+      if (typetexts === 'Manual') {
         timeTableManagement.getTimeTableManagementStatus().should('be.visible')
         timeTableManagement.getTimeTableManagementActionEditBtns().should('be.visible')
         timeTableManagement.getTimeTableManagementActionDeleteBtns().should('be.visible')
       }
     })
     cy.wait(1000)
-    timeTableManagement.getTimeTableManagementActionEditBtns().eq(0).click({force:true})
+    timeTableManagement.getTimeTableManagementActionEditBtns().eq(0).click({ force: true })
     cy.wait(2000)
-    timeTableManagement.getTimeTableManagementClassCardSections().eq(45).click()
+    timeTableManagement.getTimeTableManagementClassCardSections().eq(49).click()
   })
-
-
 
 })
 
