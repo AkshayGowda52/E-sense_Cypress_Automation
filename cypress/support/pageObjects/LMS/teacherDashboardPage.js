@@ -75,6 +75,8 @@ class teacherDashboardPage {
         return cy.get('a[href="/teacher/noticeBoard"]')
     }
 
+   
+
     //Logout-teacher
     teacherLogout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
