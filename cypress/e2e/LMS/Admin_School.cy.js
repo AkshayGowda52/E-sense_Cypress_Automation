@@ -260,7 +260,7 @@ describe("Admin School Validation", function () {
 
 
   })
-
+  
   it('admin school 07 Verify that School Admin can Create the Auto time table successfully', function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
