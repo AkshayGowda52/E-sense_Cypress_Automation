@@ -142,6 +142,46 @@ it("E2E-07_Teacher_MyClasses_To validate scheduled live class is reflected in my
     teacherMyclassesPage.getLiveClassDeletedSuccessfullymsg().should('be.visible',{timeout:1000})
 
 })
+it("E2E_2_Teacher_MyClasses_To validate that user is able to create the workload to the studnet",function(){
+    teacherCommonPage.getTeacherDashBoardPage().should('be.visible').and('have.text','Your Dashboard')
+    teacherCommonPage.getTeacherSideNavbar().invoke('show').wait(500)
+    teacherCommonPage.getTeacherMyClassesTab().click({force:true},{timeout:1000})
+    teacherMyclassesPage.getParticularStudentTab().click({force:true}).wait(1000)
+    teacherMyclassesPage.getWorkLoadparticularday().click({force:true}).wait(1000)
+    teacherMyclassesPage.getCreatehomeWorkthroughWorkLoad().click({force:true})
+    teacherMyclassesPage.getCreateHomeWorkPopup().should("be.visible",{timeout:1000})
+    let hrand=Math.ceil(Math.random()*1000)
+    let homeWorkTitle="HomeWork"+hrand
+    let hDescription="Description"+hrand
+    teacherMyclassesPage.getHomeWorkTitleTextField().type(homeWorkTitle)
+    teacherMyclassesPage.getDescriptionTextareaField().type(hDescription)
+    teacherMyclassesPage.getDueDateButton().click({force:true})
+    var d = new Date();
+    var date = d.getDate()+1
+    calenderPage.getPickDateInCalender(date).click().wait(1000)
+
+    teacherMyclassesPage.getDueTimeButton().click({force:true})
+    for (let j = 0; j < 2; j++) {
+        cy.get('body').type('{downArrow}')
+        cy.wait(500)
+
+    }
+    teacherMyclassesPage.getCreateHomeworkContent().click({force:true})
+    teacherMyclassesPage.getApproxTimeRequiredTextField().click({force:true}).wait(1000)
+    teacherMyclassesPage.getApproxTimeRequiredList('15-30').click({force:true})
+    teacherMyclassesPage.getSaveButtonInCreateHomeworkPopup().click({force:true})
+    teacherMyclassesPage.getHomeworkCreatedMsg().should("be.visible",{timeout:1000}).wait(500)
+    teacherMyclassesPage.getVerifyHomeworkCreated(homeWorkTitle).should('be.visible',{timeout:1000})
+    teacherMyclassesPage.getHomeWorkDeleteIcon().click({force:true})
+    teacherMyclassesPage.getDeleteButtonInDoUWantDeleteHomeWorkPopup().click({force:true})
+    teacherMyclassesPage.getHomeworkDeletedMsg().should('be.visible',{timeout:1000})
+
+    
+
+
+
+
+})
 
 
 

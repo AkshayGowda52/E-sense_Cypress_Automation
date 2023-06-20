@@ -633,6 +633,55 @@ class AdminReportPage {
         return cy.get('div[id="demo-simple-select"]')
     }
 
+    getListOfGrade() {
+        return cy.get('[role="listbox"] li').contains('Grade 2')
+    }
+
+    getSectionList() {
+        return cy.get('[role="listbox"] li').contains('A')
+    }
+
+
+    CreateStudentAccount(studentname,RandomString,PrimaryContactNumb,GuardianName,GuardianContactNumb,AddressLine1,Pincode,AdmissionYear,AdmissionNumb,RollNumb){
+       this.getUserTab().click()
+       this.getStudentsTab().click()
+       this.getAddStudentsIcon().click({ force: true })
+       this.getAddStudentPageFullNameTxtfield().click().type(studentname + "" +RandomString)
+       this.getAddStudentPageGenderDropdown().click()
+       this.getAddStudentPageGenderList().click()
+       this.getAddStudentPagePrimaryDetailsContactNumb().click().type(PrimaryContactNumb)
+       this.getAddStudentPageSelectRelationDropdown().click()
+       this.getAddStudentPageSelectRelation().click()
+       this.getAddStudentPageGuardianNameTxtfield().click().type(GuardianName)
+       this.getAddStudentPageGuardianContactNumb().click().type(GuardianContactNumb)
+       this.getAddStudentPageAddressLine1TxtField().click().type(AddressLine1)
+       this.getAddStudentPagePincodeTxtfield().click().type(Pincode).wait(1000)
+       this.getAddStudentButton().click()
+       this.getAddStudentPageAdmissionYeartxtfield().click({ force: true }).type(AdmissionYear)
+       this.getAddStudentPageAdmissionNumbTxtfield().click().type(AdmissionNumb)
+       this.getAddStudentPageGradeDropdown().click()
+       this.getListOfGrade().click()
+       this.getAddStudentPageSectionDropdown().click()
+       this.getSectionList().click()
+       this.getAddStudentPageRollNumbTxtfield().click().wait(1000).type(RollNumb)
+       this.getAddStudentButton().click()
+    }
+
+    DeleteCreatedStudentAccount(studentname,RandomString){
+         // Post conditon- Delete Created Student account
+         this.getUserTab().click({ force: true })
+         this.getStudentsTab().click().wait(1000)
+         this.getAdminModuleUserPageStudentsList().each(($text, index) => {
+             var studentName = $text.text().trim()
+             if (studentName == studentname + "" + RandomString) {
+                this.getAdminModuleUserPageStudentsListDeleteIcon().eq(index).click()
+                this.getAdminModuleUserPageStudentsListDeletePopup().click()
+                this.getAdminModuleUserPageStudentsListDeleteButton().click().wait(2000)
+             }
+         })
+    }
+
+
 
 
 }
