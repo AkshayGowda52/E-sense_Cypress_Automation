@@ -73,7 +73,39 @@ class timeTableManagement{
     }
 
     getGeneratedTimetableWeeks(){
-        return cy.get('div.mbsc-schedule-resource-group')
+        return cy.get('div.mbsc-schedule-resource-group div.mbsc-schedule-header-dayname')
+    }
+
+    getPeriodSlotsbtn(){
+        return cy.get('div.mbsc-schedule-event-end')
+    }
+
+    getPeriodSubjectAndTeacherdropdownBtns(){
+        return cy.get('#opt-subjects')
+    }
+
+    getPeriodSubjectDropDownLists(){
+        return cy.get('ul.MuiMenu-list li')
+    }
+
+    getPeriodAddBtn(){
+        return cy.get('button.sectionSaveBtn')
+    }
+
+    getPeriodTeacherDropDownBtn(){
+        return cy.get('div[aria-labelledby="opt-subjects"]')
+    }
+
+    getPeriodPopUpTitleText(){
+        return cy.get('span.title')
+    }
+
+    getPublishBtn(){
+        return cy.get('button.continue-btn')
+    }
+
+    getTimeTableManagementClassLists(){
+        return cy.get('tr.MuiTableRow-root td:nth-child(2)')
     }
 }
 

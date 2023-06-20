@@ -7,6 +7,7 @@ const curriculumbuilderPage = require('../../support/pageObjects/LMS/curriculumB
 const adminaccountsPage = require('../../support/pageObjects/LMS/adminAccountsPage')
 const timeTableManagement = require('../../support/pageObjects/LMS/timeTableManagement')
 const calenderPage = require('../../support/pageObjects/LMS/adminCalenderPage.js')
+const adminDashboardPage = require("../../support/pageObjects/LMS/adminDashboardPage")
 
 describe("Admin School Validation", function () {
 
@@ -259,8 +260,8 @@ describe("Admin School Validation", function () {
 
 
   })
-
-  it.only('admin school 07 Verify that School Admin can Create the Auto time table successfully', function () {
+  
+  it('admin school 07 Verify that School Admin can Create the Auto time table successfully', function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
@@ -322,8 +323,24 @@ describe("Admin School Validation", function () {
     timeTableManagement.getGenerateTimeSlotsBtn().click()
     cy.wait(4000)
     timeTableManagement.getGeneratedTimetableGradeText().should('contain','Grade 5 - A')
-    var weeklength = timeTableManagement.getGeneratedTimetableWeeks().length()
-    cy.log(weeklength)
+    timeTableManagement.getGeneratedTimetableWeeks().should('have.length','6')
+    timeTableManagement.getPeriodSlotsbtn().eq(0).click()
+    timeTableManagement.getPeriodPopUpTitleText().should('have.text','Add Period')
+    timeTableManagement.getPeriodSubjectAndTeacherdropdownBtns().eq(0).click()
+    timeTableManagement.getPeriodSubjectDropDownLists().contains('English Test 12').click()
+    timeTableManagement.getPeriodTeacherDropDownBtn().click()
+    timeTableManagement.getPeriodSubjectDropDownLists().contains('Abhi').click()
+    timeTableManagement.getPeriodAddBtn().click()
+    timeTableManagement.getPublishBtn().click()
+    timeTableManagement.getTimeTableManagementClassLists().should('contain','Grade 5 - A')
+
+    adminDashboardPage.logout()
+
+    cy.visit(Cypress.env("url"))
+    cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+      cy.teacherLogin(validAdminLoginData.teacherUserName3, validAdminLoginData.teacherPassword)
+    })
+
 
   })
 
