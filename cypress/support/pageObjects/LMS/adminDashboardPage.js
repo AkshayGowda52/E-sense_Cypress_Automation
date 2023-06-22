@@ -132,6 +132,10 @@ class adminDashboardPage {
         return cy.get('g>path').eq(0)
     }
 
+    getContentlibrarySideBar(){
+        return cy.get('a[href="/admin/content/contentlibrary"]')
+    }
+
     //Logout-admin
     logout() {
         this.getMyProfileIconInSideNavigationBar().click({ force: true }).wait(1000)
