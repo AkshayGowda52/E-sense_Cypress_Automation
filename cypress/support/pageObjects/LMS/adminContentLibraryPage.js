@@ -12,6 +12,7 @@ class adminContentLibrary{
         return cy.get('li[role="option"]').contains(opt)
     }
 
+
     getGradesDropdown(){
         return cy.get('div.MuiInputBase-formControl').eq(2)
     }
@@ -40,6 +41,7 @@ class adminContentLibrary{
         return cy.get('li[role="option"]').contains('Rise Series')
     }
 
+
     getPublicationsDropdownOpt(opt){
         return cy.get('li[role="option"]').contains(opt)
     }
@@ -60,9 +62,11 @@ class adminContentLibrary{
         return cy.get('li[role="option"]').contains('Grade 1')
     }
 
+
     getGradesDropdownpt(opt){
         return cy.get('li[role="option"]').contains(opt)
     }
+
 
     getCardGrade(){
         return cy.get('span.MuiChip-labelSmall')

@@ -37,6 +37,7 @@ describe("Admin Content library Validation", function () {
         adminContentLibraryPage.getCardSubjects().should('contain','Basic maths')
     })
 
+
     it('E2E_02 Validate that user is able to view the vedios contents on topschool library ', function () {
         adminDashboardPage.getContentlibrarySideBar().click({force:true}).wait(2000)
         adminContentLibraryPage.getPublicationsDropdown().click().wait(1000)
