@@ -104,8 +104,12 @@ class adminAccountsPage{
         return cy.get('button.continue-btn-cls')
     }
 
-    getAdminAccountTableRoleText(){
-        return cy.xpath("//td[text()='HOD']")
+    getAdminAccountTableRoleText(teacher){
+        return cy.xpath("//span[text()='"+teacher+"']//ancestor::tr//td//button[contains(@class,'departmentDeleteIcon')]")
+    }
+    
+    getAdminAccountTableRoleTexts(){
+        return cy.get('span.adminRoles_userName__20cUY')
     }
 
     getAdminStatebtn(){

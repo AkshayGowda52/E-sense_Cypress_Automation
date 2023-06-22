@@ -4,8 +4,8 @@ class GradeAndSubjectPage{
         return cy.get('td.grade-name')
     }
 
-    getSectionAddBtn(){
-        return cy.get('button.sectionAddBtn')
+    getSectionAddBtn(Grade){
+        return cy.xpath("//tbody[@class='MuiTableBody-root css-1xnox0e']//tr//td//div[text()='"+Grade+"']/ancestor::tr//descendant::button")
     }
 
     getSectionBttn(){

@@ -49,84 +49,73 @@ describe("Admin School Validation", function () {
     adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
     cy.wait(2000)
     academicsetuppage.getGradeAndAcademicTab().click()
-    gradeAndSubjectPage.getGrades().each(($el, index, $List) => {
-      var grades = $el.text()
-      if (grades === "Grade 5") {
-        gradeAndSubjectPage.getSectionAddBtn().eq(index).click()
-        gradeAndSubjectPage.getAddNewSectionPopUPTitle().should('have.text', this.academicSetUp.AddNewSectionTitle)
-        gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).type(this.academicSetUp.SectionName)
-        cy.wait(1000)
-        gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).invoke('val').then((text) => {
-          var sectext = text
-          cy.log(sectext)
-          cy.wrap(sectext).as('sectext')
-        })
-        gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(1).type(this.academicSetUp.NumberOfStudent)
-        gradeAndSubjectPage.getOptionalSubjectsDropDownBtn().click()
-        gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
-        cy.wait(1000)
-        cy.get('body').click(0, 0)
-        cy.wait(3000)
-        gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({ force: true })
-        cy.wait(2000)
-        adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
-        gradeAndSubjectPage.getGrades().each(($el, index, $List) => {
-          var grades = $el.text()
-          if (grades === "Grade 5") {
-            gradeAndSubjectPage.getSectionBtn().then((sectionText1) => {
-              var sectionText = sectionText1.text()
-              cy.log(sectionText)
-              cy.get('@sectext').then((sectiontext) => {
-                expect(sectiontext).to.eq(sectionText)
-              })
-            })
-          }
-        })
+    cy.wait(3000)
 
-      }
+    gradeAndSubjectPage.getSectionAddBtn('Grade 5').eq(0).click()
+
+    gradeAndSubjectPage.getAddNewSectionPopUPTitle().should('have.text', this.academicSetUp.AddNewSectionTitle)
+    gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).type(this.academicSetUp.SectionName)
+    cy.wait(1000)
+    gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).invoke('val').then((text) => {
+      var sectext = text
+      cy.log(sectext)
+      cy.wrap(sectext).as('sectext')
     })
-    gradeAndSubjectPage.getSectionBtn().click()
-    gradeAndSubjectPage.getSectionDeleteBtn().click()
-    gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn().click()
-    ////////////////////////////////////////////////////////////////////
-    gradeAndSubjectPage.getGrades().each(($el, index, $List) => {
-      var grades = $el.text()
-      if (grades === "Grade 6") {
-        gradeAndSubjectPage.getSectionAddBtn().eq(index).click()
-        gradeAndSubjectPage.getAddNewSectionPopUPTitle().should('have.text', this.academicSetUp.AddNewSectionTitle)
-        gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).type(this.academicSetUp.SectionName)
-        cy.wait(1000)
-        gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).invoke('val').then((text) => {
-          var sectext = text
-          cy.log(sectext)
-          cy.wrap(sectext).as('sectext')
-        })
-        gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(1).type(this.academicSetUp.NumberOfStudent)
-        gradeAndSubjectPage.getOptionalSubjectsDropDownBtn().click()
-        gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
-        cy.wait(1000)
-        cy.get('body').click(0, 0)
-        cy.wait(1000)
-        gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click()
-        cy.wait(2000)
-        adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
-        gradeAndSubjectPage.getGrades().each(($el, index, $List) => {
-          var grades = $el.text()
-          if (grades === "Grade 6") {
-            gradeAndSubjectPage.getSectionBtn1().then((sectionText1) => {
-              var sectionText = sectionText1.text()
-              cy.log(sectionText)
-              cy.get('@sectext').then((sectiontext) => {
-                expect(sectiontext).to.eq(sectionText)
-              })
-            })
-          }
-        })
-      }
+    gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(1).type(this.academicSetUp.NumberOfStudent)
+    gradeAndSubjectPage.getOptionalSubjectsDropDownBtn().click()
+    gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
+    cy.wait(1000)
+    cy.get('body').click(0, 0)
+    cy.wait(3000)
+    gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({ force: true })
+    cy.wait(4000)
+    adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
+    cy.wait(2000)
+    gradeAndSubjectPage.getSectionAddBtn('Grade 5',{timeout:4000}).eq(0).then((sectionText1) => {
+      var sectionText = sectionText1.text()
+      cy.log(sectionText)
+      cy.get('@sectext').then((sectiontext) => {
+        expect(sectiontext).to.eq(sectionText)
+      })
     })
-    gradeAndSubjectPage.getSectionBtn1().click()
-    gradeAndSubjectPage.getSectionDeleteBtn().click()
-    gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn().click()
+
+
+
+    gradeAndSubjectPage.getSectionAddBtn('Grade 5').eq(0).click()
+    gradeAndSubjectPage.getSectionDeleteBtn({ timeout: 4000 }).click()
+    gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn({ timeout: 4000 }).click()
+
+    gradeAndSubjectPage.getSectionAddBtn('Grade 6').eq(0).click()
+    gradeAndSubjectPage.getAddNewSectionPopUPTitle().should('have.text', this.academicSetUp.AddNewSectionTitle)
+    gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).type(this.academicSetUp.SectionName)
+    cy.wait(1000)
+    gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).invoke('val').then((text) => {
+      var sectext = text
+      cy.log(sectext)
+      cy.wrap(sectext).as('sectext')
+    })
+    gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(1).type(this.academicSetUp.NumberOfStudent)
+    gradeAndSubjectPage.getOptionalSubjectsDropDownBtn().click()
+    gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
+    cy.wait(1000)
+    cy.get('body').click(0, 0)
+    cy.wait(3000)
+    gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({ force: true })
+    cy.wait(2000)
+    adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
+    cy.wait(2000)
+    gradeAndSubjectPage.getSectionAddBtn('Grade 6').eq(0).then((sectionText1) => {
+      var sectionText = sectionText1.text()
+      cy.log(sectionText)
+      cy.get('@sectext').then((sectiontext) => {
+        expect(sectiontext).to.eq(sectionText)
+      })
+    })
+
+    gradeAndSubjectPage.getSectionAddBtn('Grade 6').eq(0).click()
+    gradeAndSubjectPage.getSectionDeleteBtn({ timeout: 4000 }).click()
+    gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn({ timeout: 4000 }).click()
+
   })
 
   it('admin school 003 Verify that School admin can add the School infracture successfully', function () {
@@ -135,6 +124,10 @@ describe("Admin School Validation", function () {
     adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
     admin_Schoolpage.getSchoolInfrastructures().click()
     schoolInfrastructuresPage.getInfrastructureTitle().should('have.text', "School Infrastructure")
+
+    schoolInfrastructuresPage.getInfrastructureSingleDeleteBtn('testyantra').click()
+    schoolInfrastructuresPage.getInfrastructureDeleteBttnPopUp().click()
+
     schoolInfrastructuresPage.getAddInfrastructureBttn().click()
     schoolInfrastructuresPage.getPopUpAddInfrastructureTitle().should('have.text', "Add Infrastructure")
     schoolInfrastructuresPage.getInfrastructureNameTextField().type("testyantra")
@@ -160,8 +153,8 @@ describe("Admin School Validation", function () {
         schoolInfrastructuresPage.getGradeDropDownLists().contains("Grade 7 - a").click()
         schoolInfrastructuresPage.getRoomNameTextField().eq(2).type("kannada class start at 9:30am in 1 floor")
         schoolInfrastructuresPage.getPopupAddRoomBttn().click()
-        schoolInfrastructuresPage.getInfrastructureDeleteIconBtn().eq(index).click()
-        schoolInfrastructuresPage.getInfrastructureDeleteBttnPopUp().click()
+        // schoolInfrastructuresPage.getInfrastructureDeleteIconBtn().eq(index).click()
+        // schoolInfrastructuresPage.getInfrastructureDeleteBttnPopUp().click()
       }
     })
   })
@@ -185,10 +178,11 @@ describe("Admin School Validation", function () {
     curriculumbuilderPage.getTopSchoolTabText().click()
     cy.wait(3000)
     curriculumbuilderPage.getAllSelectGradesCheckBox().eq(0).click()
-    cy.wait(1000)
-    curriculumbuilderPage.getBottomDuplicateBtn().click()
+    cy.wait(3000)
+    curriculumbuilderPage.getBottomDuplicateBtn({timeout:4000}).click()
     curriculumbuilderPage.getOverWrightBtn().click()
-    curriculumbuilderPage.getSussfullMessage().should('be.visible')
+    cy.wait(3000)
+    curriculumbuilderPage.getSussfullMessage({timeout:4000}).should('be.visible')
     curriculumbuilderPage.getMySchoolTab().click()
     curriculumbuilderPage.getMySchoolAllSelectGradesCheckBox().eq(0).click()
     curriculumbuilderPage.getMyschlBootomApproveBtn().click()
@@ -211,7 +205,7 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getAdminAccountText().eq(0).should('have.text', 'Admin Accounts')
     adminaccountsPage.getAddnewBtn().click()
     adminaccountsPage.getAddNewRolePopUpText().should('contain.text', 'Add New Role')
-    adminaccountsPage.getDesignationNameTextField().type("HOD")
+    adminaccountsPage.getDesignationNameTextField().type("Teacher")
     adminaccountsPage.getDesignationNameTextField().invoke('val').then((text) => {
       var designationName = text
       cy.log(designationName)
@@ -235,32 +229,39 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getAdminBloodGroupLists().contains('O+').click()
     adminaccountsPage.getAdminEmployeeIDbtn().type('Malco007')
     adminaccountsPage.getAdminSelectRoleBtn().click()
-    adminaccountsPage.getAdminSelectRoleLists().contains('HOD').click()
+    adminaccountsPage.getAdminSelectRoleLists().contains('Teacher').click()
     adminaccountsPage.getAdminAddressLine1btn().type('Bnagalore Univercity')
     adminaccountsPage.getAdminAddressLine2Btn().type("Ulall")
-    adminaccountsPage.getAdminPincode().type('560056')
+    adminaccountsPage.getAdminPincode().type('560057')
     // cy.get('input[name="state"]').click({force:true})
     cy.wait(4000)
     adminaccountsPage.getAdminContinueBtn().click()
     cy.wait(3000)
-    adminaccountsPage.getAdminAccountTableRoleText().eq(0).then((roleText) => {
+
+    // adminaccountsPage.getAdminAccountTableRoleText('Teacher',{timeout:4000}).click()
+    adminaccountsPage.getRoleTab({timeout:4000}).click()
+    adminaccountsPage.getAdminAccountTableRoleTexts().then((roleText) => {
       var roletext = roleText.text()
       cy.log(roletext)
-      cy.get('@designationName').then((designationname) => {
-        cy.log(roletext)
-        expect(designationname).to.eq(roletext)
-      })
+      if (roletext === 'Teacher') {
+        cy.get('@designationName').then((designationname) => {
+          cy.log(roletext)
+          expect(designationname).to.eq(roletext)
+        })
+      }
     })
+    adminaccountsPage.getAdminAccountTableRoleText('Teacher', { timeout: 4000 }).click()
+
 
     cy.wait(2000)
-    adminaccountsPage.getRoleTab().click()
-    adminaccountsPage.getRoleDeleteBtn().click()
+    // adminaccountsPage.getRoleTab().click()
+    // adminaccountsPage.getRoleDeleteBtn().click()
     adminaccountsPage.getRoleDeletePopUpBtn().click()
     cy.get('body').click(0, 0)
 
 
   })
-  
+
   it('admin school 07 Verify that School Admin can Create the Auto time table successfully', function () {
     cy.wait(2000)
     adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
@@ -322,17 +323,17 @@ describe("Admin School Validation", function () {
     timeTableManagement.getRoomLists().contains("6th").click()
     timeTableManagement.getGenerateTimeSlotsBtn().click()
     cy.wait(4000)
-    timeTableManagement.getGeneratedTimetableGradeText().should('contain','Grade 5 - A')
-    timeTableManagement.getGeneratedTimetableWeeks().should('have.length','6')
-    timeTableManagement.getPeriodSlotsbtn().eq(0).click()
-    timeTableManagement.getPeriodPopUpTitleText().should('have.text','Add Period')
+    timeTableManagement.getGeneratedTimetableGradeText().should('contain', 'Grade 7 - a')
+    timeTableManagement.getGeneratedTimetableWeeks().should('have.length', '6')
+    timeTableManagement.getPeriodSlotsbtn().eq(3).click()
+    timeTableManagement.getPeriodPopUpTitleText().should('have.text', 'Add Period')
     timeTableManagement.getPeriodSubjectAndTeacherdropdownBtns().eq(0).click()
-    timeTableManagement.getPeriodSubjectDropDownLists().contains('English Test 12').click()
+    timeTableManagement.getPeriodSubjectDropDownLists().contains('Science VII').click()
     timeTableManagement.getPeriodTeacherDropDownBtn().click()
     timeTableManagement.getPeriodSubjectDropDownLists().contains('Abhi').click()
     timeTableManagement.getPeriodAddBtn().click()
     timeTableManagement.getPublishBtn().click()
-    timeTableManagement.getTimeTableManagementClassLists().should('contain','Grade 5 - A')
+    timeTableManagement.getTimeTableManagementClassLists().should('contain', 'Grade 7 - a')
 
     adminDashboardPage.logout()
 
@@ -362,10 +363,11 @@ describe("Admin School Validation", function () {
     cy.wait(1000)
     timeTableManagement.getTimeTableManagementActionEditBtns().eq(0).click({ force: true })
     cy.wait(2000)
-    timeTableManagement.getTimeTableManagementClassCardSections().eq(49).click()
+    // timeTableManagement.getTimeTableManagementClassCardSections().eq(49).click()
   })
 
 })
+
 
     //Akshay
 

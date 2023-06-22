@@ -4,6 +4,10 @@ class SchoolInftastructures{
         return cy.get('div.add-infra-btn')
     }
 
+    getInfrastructureSingleDeleteBtn(InfrastructureName){
+        return cy.xpath('//div[text()="'+InfrastructureName+'"]/ancestor::div[@class="infra-table-row-out"]//div[@class="rooms-delete-out"]')
+    }
+
     getInfrastructureTitle(){
         return cy.xpath("//div[text()='School Infrastructure']")
     }
