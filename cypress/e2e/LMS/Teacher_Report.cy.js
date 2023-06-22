@@ -62,7 +62,7 @@ describe("TeacherReports", function () {
         teacherReport.getSaveBtn().click()
         teacherReport.getStudentFullName().each((txt, index) => {
             var studentName = txt.text()
-            if (studentName == "kumar" + "" + randString) {
+            if (studentName ==  "kumar" + "" + randString) {
                 teacherReport.getUpdatedStatus().should('be.visible')
             }
         })
@@ -236,53 +236,47 @@ describe("TeacherReports", function () {
         adminReportPage.DeleteCreatedStudentAccount("kumar", randString)
     })
 
-    it.skip('Tc__007 Verify that Teacher is able to generate the My yearly Performance and  view it in 360 reports', function () {
+    // it.skip('Tc__007 Verify that Teacher is able to generate the My yearly Performance and  view it in 360 reports', function () {
 
-        adminReportPage.CreateStudentAccount("kumar", randString, 9999999999, "veena", 8888888888, "Bangalore", 561101, "2012", randNumb, randNumb)
-        dashboard.logout()
-        cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
-            cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
-        })
-        teacherReport.getSideNavBar().invoke('show')
-        teacherReport.getReportTab().click({ force: true })
-        teacherReport.getStudent360ReportsTab().eq(1).wait(500).click().wait(500)
-        teacherReport.get360ReportTxt().should('have.text', '360˚ Reports')
-        teacherReport.getStudentsName().each((Txt, index) => {
-            var StudentNames = Txt.text()
-            if (StudentNames == "kumar" + "" + randString) {
-                teacherReport.getViewReportBtn().eq(index).click()
-            }
-        })
-        teacherReport.getMyYearlyPerformanceTab().should('be.visible').click()
-        // validation step is pending
-        teacherDashboard.teacherLogout()
-        cy.wait(1000)
-        cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
-            cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
-        })
-        ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
-        ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
-        ReportDashboardPage.get360ReportPageTitle().should('have.text', '360˚ Reports').wait(2000)
-        ReportDashboardPage.get360ReportPageGradeDropdown().click()
-        teacherReport.getAddNewReportPage_GradesLists().click()
-        ReportDashboardPage.get360ReportPageSectionDropdown().click()
-        teacherReport.getSectionsList().click().wait(2000)
-        ReportDashboardPage.get360ReportPageStudentList().each(($Txt, index) => {
-            var StudentName = $Txt.text()
-            if (StudentName == "kumar" + "" + randString) {
-                teacherReport.getViewReportBtn().eq(index).click({ force: true })
-            }
-        })
-        teacherReport.getMyYearlyPerformanceTab().should('be.visible').click()
-        // validation step is pending
+    //     adminReportPage.CreateStudentAccount("kumar", randString, 9999999999, "veena", 8888888888, "Bangalore", 561101, "2012", randNumb, randNumb)
+    //     dashboard.logout()
+    //     cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
+    //         cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
+    //     })
+    //     teacherReport.getSideNavBar().invoke('show')
+    //     teacherReport.getReportTab().click({ force: true })
+    //     teacherReport.getStudent360ReportsTab().eq(1).wait(500).click().wait(500)
+    //     teacherReport.get360ReportTxt().should('have.text', '360˚ Reports')
+    //     teacherReport.getStudentsName().each((Txt, index) => {
+    //         var StudentNames = Txt.text()
+    //         if (StudentNames == "kumar" + "" + randString) {
+    //             teacherReport.getViewReportBtn().eq(index).click()
+    //         }
+    //     })
+    //     teacherReport.getMyYearlyPerformanceTab().should('be.visible').click()
+    //     // validation step is pending
+    //     teacherDashboard.teacherLogout()
+    //     cy.wait(1000)
+    //     cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+    //         cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+    //     })
+    //     ReportDashboardPage.getAdminReportsSideMenubarReportTab().click()
+    //     ReportDashboardPage.getStudent360ReportTab().should('be.visible', { timeout: 2000 }).click({ force: true })
+    //     ReportDashboardPage.get360ReportPageTitle().should('have.text', '360˚ Reports').wait(2000)
+    //     ReportDashboardPage.get360ReportPageGradeDropdown().click()
+    //     teacherReport.getAddNewReportPage_GradesLists().click()
+    //     ReportDashboardPage.get360ReportPageSectionDropdown().click()
+    //     teacherReport.getSectionsList().click().wait(2000)
+    //     ReportDashboardPage.get360ReportPageStudentList().each(($Txt, index) => {
+    //         var StudentName = $Txt.text()
+    //         if (StudentName == "kumar" + "" + randString) {
+    //             teacherReport.getViewReportBtn().eq(index).click({ force: true })
+    //         }
+    //     })
+    //     teacherReport.getMyYearlyPerformanceTab().should('be.visible').click()
+    //     // validation step is pending
 
-//
-
-
-
-    })
-
-
+    // })
 
 })
 
