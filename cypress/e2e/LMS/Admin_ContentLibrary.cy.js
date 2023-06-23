@@ -16,7 +16,7 @@ describe("Admin Content library Validation", function () {
     it('E2E_01 Validate that user is able to view the Presentation contents on topschool library ', function () {
         adminDashboardPage.getContentlibrarySideBar().click({force:true}).wait(2000)
         adminContentLibraryPage.getPublicationsDropdown().click().wait(1000)
-        adminContentLibraryPage.getPublicationsDropdownRaiseSeriesOpt({timeout:2000}).scrollIntoView().click()
+        adminContentLibraryPage.getPublicationsDropdownRaiseSeriesOpt({timeout:2000}).scrollIntoView().should('be.visible').click()
         adminContentLibraryPage.getSearchBtn().click().wait(2000)
         adminContentLibraryPage.getPresentationsTab({timeout:2000}).click()
         adminContentLibraryPage.getCardViewBtn().should('contain','View Presentations')
@@ -70,4 +70,26 @@ describe("Admin Content library Validation", function () {
         adminContentLibraryPage.getSearchBtn().click().wait(2000)
         adminContentLibraryPage.getCardGrade().should('contain','NCERT TextBook').wait(2000)
     })
+
+
+    it('E2E_04 Validate that user is able to view the Lesson plans contents on topschool library ', function () {
+        adminDashboardPage.getContentlibrarySideBar().click({force:true}).wait(2000)
+        adminContentLibraryPage.getPublicationsDropdown().click().wait(1000)
+        adminContentLibraryPage.getPublicationsDropdownRaiseSeriesOpt({timeout:2000}).scrollIntoView().click()
+        adminContentLibraryPage.getContentDropdown({timeout:2000}).click()
+        adminContentLibraryPage.getContentDropdownOpt('Lesson Plan').click()
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getCardGrade().should('contain','Lesson Plan').wait(2000)
+    })
+
+    it('E2E_05 Validate that user is able to view the Lesson plans contents on topschool library ', function () {
+        adminDashboardPage.getContentlibrarySideBar().click({force:true}).wait(2000)
+        adminContentLibraryPage.getPublicationsDropdown().click().wait(1000)
+        adminContentLibraryPage.getPublicationsDropdownRaiseSeriesOpt({timeout:2000}).scrollIntoView().click()
+        adminContentLibraryPage.getContentDropdown({timeout:2000}).click()
+        adminContentLibraryPage.getContentDropdownOpt('RISE TextBook').click()
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getCardGrade().should('contain','RISE TextBook').wait(2000)
+    })
+
 })
