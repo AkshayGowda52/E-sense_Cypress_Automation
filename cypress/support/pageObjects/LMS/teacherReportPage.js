@@ -176,6 +176,45 @@ class TeacherReport {
         return cy.get('button[type="submit"]')
     }
 
+    //Tc 006 Verify that Teacher is able to view the ELA's  in 360 reports
+    getMyGradesTab(){
+        return cy.xpath('//button[contains(.,"My Grades")]')
+    }
+
+    getMyGradesTxt(){
+        return cy.get('div[class*="StudentDetails_prevStdMyGradeItem"]')
+    }
+
+    getCompetencyTab(){
+        return cy.xpath('//button[contains(.,"My Competency")]')
+    }
+
+    getChapterTxt(){
+        return cy.get('table[class*="StudentDetails_prevStdMyCompTable"]>tr td:nth-child(1)')
+    }
+
+    getTopicTxt(){
+        return cy.get('table[class*="StudentDetails_prevStdMyCompTable"]>tr td:nth-child(2)')
+    }
+
+    getCompetencyTxt(){
+        return cy.get('table[class*="StudentDetails_prevStdMyCompTable"]>tr td:nth-child(3)')
+    }
+
+    getSubjectPerformanceTab(){
+        return cy.xpath('//button[contains(.,"Subject Performance")]')
+    }
+
+    getLearningOutcomesTxt(){
+        return cy.get('table[class*="StudentDetails_prevStdMyCompTable"]>tr td:nth-child(3)')
+    }
+
+    getAllParametersTxt(){
+        return cy.get('table[class*="StudentDetails_prevStdMyCompTable"]>tr td:nth-child(4)')
+    }
+
+
+
     //Tc 007
     getMyYearlyPerformanceTab(){
         return cy.get('//button[contains(.,"My Yearly Performance")]')

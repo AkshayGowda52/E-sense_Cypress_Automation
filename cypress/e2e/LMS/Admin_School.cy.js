@@ -20,6 +20,7 @@ describe("Admin School Validation", function () {
     })
     cy.fixture("LMS/admin_School").as('academicSetUp')
   })
+  
 
   it('admin school 001 Verify that School admin can add the new academic year successfully', function () {
     cy.wait(2000)
