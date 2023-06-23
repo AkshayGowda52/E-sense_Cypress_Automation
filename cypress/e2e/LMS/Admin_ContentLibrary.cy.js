@@ -36,4 +36,38 @@ describe("Admin Content library Validation", function () {
         adminContentLibraryPage.getViewAllBtn().click()
         adminContentLibraryPage.getCardSubjects().should('contain','Basic maths')
     })
+
+
+    it('E2E_02 Validate that user is able to view the vedios contents on topschool library ', function () {
+        adminDashboardPage.getContentlibrarySideBar().click({force:true}).wait(2000)
+        adminContentLibraryPage.getPublicationsDropdown().click().wait(1000)
+        adminContentLibraryPage.getPublicationsDropdownOpt('Publications',{timeout:2000}).scrollIntoView().click()
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getContentDropdown({timeout:2000}).click()
+        adminContentLibraryPage.getContentDropdownOpt('Video').click()
+        adminContentLibraryPage.getGradesDropdown({timeout:2000}).click()
+        adminContentLibraryPage.getGradesDropdownpt('Grade 8').click()
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getCardGrade().should('contain','Grade 8 grade').wait(2000)
+        adminContentLibraryPage.getSubjectsDropdown({timeout:4000}).click()
+        adminContentLibraryPage.getSubjectsDropdownOpt('12121').click()
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getCardSubjects().should('contain','12121')
+        adminContentLibraryPage.getChapterDropdown().click().wait(2000)
+        adminContentLibraryPage.getChapterDropdownOpt('Kiayada Paul',{timeout:4000}).click().wait(2000)
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getViewAllBtn().click()
+        adminContentLibraryPage.getCardSubjects().should('contain','12121')
+    })
+
+
+    it('E2E_03 Validate that user is able to view the NCERT textbook contents on topschool library ', function () {
+        adminDashboardPage.getContentlibrarySideBar().click({force:true}).wait(2000)
+        adminContentLibraryPage.getPublicationsDropdown().click().wait(1000)
+        adminContentLibraryPage.getPublicationsDropdownRaiseSeriesOpt({timeout:2000}).scrollIntoView().click()
+        adminContentLibraryPage.getContentDropdown({timeout:2000}).click()
+        adminContentLibraryPage.getContentDropdownOpt('NCERT TextBook').click()
+        adminContentLibraryPage.getSearchBtn().click().wait(2000)
+        adminContentLibraryPage.getCardGrade().should('contain','NCERT TextBook').wait(2000)
+    })
 })

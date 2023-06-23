@@ -107,6 +107,50 @@ class timeTableManagement{
     getTimeTableManagementClassLists(){
         return cy.get('tr.MuiTableRow-root td:nth-child(2)')
     }
+
+    getTeacherDashBoardUpNextText(){
+        return cy.xpath("//p[text()='Up Next']")
+    }
+
+    getTeacherDashBoardLaterTodayText(){
+        return cy.xpath("//p[text()='Later Today']")
+    }
+
+    getTeacherMyClassSideBarImgBtn(){
+        return cy.get('img[src="/static/media/myClasses.e2b87f30.svg"]')
+    }
+
+    getTeacherMyClassSubjects(){
+        return cy.get('div.content-popover')
+    }
+
+    getMyclassPerticulatSubjectTabs(){
+        return cy.get('div.MuiTabs-flexContainer button')
+    }
+
+    getTeacherMyCalanderSideBarImgBtn(){
+        return cy.get('img[src="/static/media/myCalendar.aa68473e.svg"]')
+    }
+
+    getMyClassTeacherAssingedClassbtn(){
+        return cy.get('div.md-custom-event-cont')
+    }
+
+    getDeleteTimeTableForParticularGrade(Grade){
+        return cy.xpath("//td[text()='"+Grade+"']/ancestor::tr//img")
+    }
+
+    getTimeTableDeletePopUpBtn(){
+        return cy.xpath("//button[text()='Delete']")
+    }
+
+    getEditTimetableTable(){
+        return cy.get('div.mbsc-schedule-wrapper')
+    }
+
+    getTimeTableEditBtnForPerticularGrade(grade){
+        return cy.xpath("//td[text()='"+grade+"']/ancestor::tr//td//div//span")
+    }
 }
 
 module.exports = new timeTableManagement()

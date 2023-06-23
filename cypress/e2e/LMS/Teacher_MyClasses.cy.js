@@ -1,7 +1,7 @@
 const teacherMyclassesPage=require("../../support/pageObjects/LMS/teacherMyClasses.js")
 const teacherCalenderPage=require('../../support/pageObjects/LMS/teacherCalenderPage.js')
 const calenderPage=require('../../support/pageObjects/LMS/adminCalenderPage.js')
-const teacherCommonPage=require("../../support/pageObjects/teacherCommonPage.js")
+const teacherCommonPage=require("../../support/pageObjects/LMS/teacherCommonPage.js")
 
 describe('MyClasses',function(){
     beforeEach('Login to application', function () {
@@ -182,6 +182,7 @@ it("E2E_2_Teacher_MyClasses_To validate that user is able to create the workload
 
 
 })
+
 
 
 

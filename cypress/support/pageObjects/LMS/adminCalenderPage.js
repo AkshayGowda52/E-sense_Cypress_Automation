@@ -174,7 +174,7 @@ class CalenderPage{
     return cy.get('button').contains('Delete Holiday')
    }
    getHolidayDetailsIncalender(holiday){
-    return cy.xpath("//strong[text()='"+holiday+"']")
+    return cy.xpath("(//strong[text()='"+holiday+"'])[1]")
    }
    getEventButton(){
     return cy.xpath("//div[contains(text(),'Event')]")
