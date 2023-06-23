@@ -304,15 +304,15 @@ class AdminReportPage {
     }
 
     getGradesList() {
-        return cy.get('p[class="MuiTypography-root MuiTypography-body1 name css-9l3uo3"] ')
+        return cy.get('p[class*="MuiTypography-root"] ')
     }
 
     getTopSchoolBtn() {
-        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('TopSchool')
+        return cy.get('ul[class*="MuiList-root MuiList-padding MuiMenu-list"] li').contains('TopSchool')
     }
 
     getMySchoolBtn() {
-        return cy.get('ul[class="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"] li').contains('My School')
+        return cy.get('ul[class*="MuiList-root MuiList-padding MuiMenu-list"] li').contains('My School')
     }
 
 
@@ -414,7 +414,7 @@ class AdminReportPage {
     }
 
     getAdminModuleUserPageStudentsListDeletePopup() {
-        return cy.get('p[class="MuiTypography-root MuiTypography-body1 css-si96ef"] h6').contains('Delete Account')
+        return cy.get('p[class*="MuiTypography-root"] h6').contains('Delete Account')
     }
 
     getAdminModuleUserPageStudentsListDeleteButton() {
@@ -430,7 +430,7 @@ class AdminReportPage {
     }
 
     getGradeBookStudentsLists() {
-        return cy.get('tbody>tr[class="MuiTableRow-root MuiTableRow-hover css-1gqug66"] td:nth-child(4)')
+        return cy.get('tbody>tr[class*="MuiTableRow-root MuiTableRow-hover"] td:nth-child(4)')
     }
 
     getArrowForwordIcon() {
@@ -474,11 +474,11 @@ class AdminReportPage {
     }
 
     getTotalPercentage() {
-        return cy.get('div[class="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt__1IGxO"]').eq(0)
+        return cy.get('div[class*="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt"]').eq(0)
     }
 
     getResult() {
-        return cy.get('div[class="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt__1IGxO"]').eq(3)
+        return cy.get('div[class*="StudentGradeBook_stdGrdBkCrdStatSectInfoCnt"]').eq(3)
     }
 
     getUpdatedStatus() {
@@ -498,7 +498,7 @@ class AdminReportPage {
     }
 
     getPrintOptions() {
-        return cy.get('[class="MuiTypography-root MuiTypography-body1 css-9hthsz"] div[class="MuiBox-root css-k4h52c"]')
+        return cy.get('p[class*="MuiTypography-root MuiTypography-body"] h6')
     }
 
     getPublishedStatus() {
@@ -609,7 +609,7 @@ class AdminReportPage {
     }
 
     get360ReportSubjectGrades() {
-        return cy.get('div[class="StudentDetails_prevStdMyGradeItem__3q6Lz MuiBox-root css-0"]')
+        return cy.get('div[class*="StudentDetails_prevStdMyGradeItem"]')
     }
 
     get360ReportMyCompetencyTab() {
