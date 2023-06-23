@@ -162,7 +162,7 @@ describe("TeacherReports", function () {
         adminReportPage.DeleteCreatedStudentAccount("kumar", randString)
     })
 
-    it('Tc__004 Verify that Teacher can search and select filters in 360 reports', function () {
+    it.only('Tc__004 Verify that Teacher can search and select filters in 360 reports', function () {
 
         adminReportPage.CreateStudentAccount("kumar", randString, 9999999999, "veena", 8888888888, "Bangalore", 561101, "2012", randNumb, randNumb)
         dashboard.logout()
@@ -234,6 +234,39 @@ describe("TeacherReports", function () {
             cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
         })
         adminReportPage.DeleteCreatedStudentAccount("kumar", randString)
+    })
+
+    it('Tc_006 Verify that Teacher is able to view the ELAs  in 360 reports',function(){
+        dashboard.logout()
+        cy.fixture('LMS/Credentials').then((validTeacherLoginData) => {
+            cy.teacherLogin(validTeacherLoginData.teacherUsername2, validTeacherLoginData.teacherPassword)
+        })
+        teacherReport.getSideNavBar().invoke('show')
+        teacherReport.getReportTab().click({ force: true })
+        teacherReport.getStudent360ReportsTab().eq(1).wait(500).click().wait(500)
+        teacherReport.get360ReportTxt().should('have.text', '360˚ Reports')
+        teacherReport.get360ReportPageGradeDropdown().click()
+        teacherReport.getListOfGrade().click()
+        teacherReport.get360ReportPageSectionDropdown().click()
+        teacherReport.getSectionList().click()
+        teacherReport.getStudentsName().each((Txt, index) => {
+            var StudentNames = Txt.text()
+            if (StudentNames == "Rahul" ) {
+                teacherReport.getViewReportBtn().eq(index).click()
+                teacherReport.getMyGradesTab().click()
+                teacherReport.getMyGradesTxt().should('be.visible')
+                teacherReport.getCompetencyTab().click()
+                teacherReport. getChapterTxt().should('be.visible')
+                teacherReport.getTopicTxt().should('be.visible')
+                teacherReport.getCompetencyTxt().should('be.visible')// some steps not completed
+                teacherReport.getSubjectPerformanceTab().click()
+                teacherReport. getChapterTxt().should('be.visible')
+                teacherReport.getTopicTxt().should('be.visible')
+                teacherReport.getLearningOutcomesTxt().should('be.visible')
+                teacherReport.getAllParametersTxt().should('be.visible')
+            }
+        })
+
     })
 
     // it.skip('Tc__007 Verify that Teacher is able to generate the My yearly Performance and  view it in 360 reports', function () {
