@@ -8,6 +8,7 @@ const adminaccountsPage = require('../../support/pageObjects/LMS/adminAccountsPa
 const timeTableManagement = require('../../support/pageObjects/LMS/timeTableManagement')
 const calenderPage = require('../../support/pageObjects/LMS/adminCalenderPage.js')
 const adminDashboardPage = require("../../support/pageObjects/LMS/adminDashboardPage")
+const teacherDashBoardPage=require('../../support/pageObjects/LMS/teacherDashboardPage.js')
 
 describe("Admin School Validation", function () {
 
@@ -63,14 +64,14 @@ describe("Admin School Validation", function () {
     })
     gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(1).type(this.academicSetUp.NumberOfStudent)
     gradeAndSubjectPage.getOptionalSubjectsDropDownBtn().click()
-    gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
+    gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists({timeout:4000}).click({ multiple: true })
     cy.wait(1000)
     cy.get('body').click(0, 0)
     cy.wait(3000)
     gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({ force: true })
     cy.wait(4000)
     adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
-    cy.wait(2000)
+    cy.wait(4000)
     gradeAndSubjectPage.getSectionAddBtn('Grade 5',{timeout:4000}).eq(0).then((sectionText1) => {
       var sectionText = sectionText1.text()
       cy.log(sectionText)
@@ -80,7 +81,6 @@ describe("Admin School Validation", function () {
     })
 
 
-
     gradeAndSubjectPage.getSectionAddBtn('Grade 5').eq(0).click()
     gradeAndSubjectPage.getSectionDeleteBtn({ timeout: 4000 }).click()
     gradeAndSubjectPage.getSectionDeletePopUpDeleteBtn({ timeout: 4000 }).click()
@@ -88,7 +88,7 @@ describe("Admin School Validation", function () {
     gradeAndSubjectPage.getSectionAddBtn('Grade 6').eq(0).click()
     gradeAndSubjectPage.getAddNewSectionPopUPTitle().should('have.text', this.academicSetUp.AddNewSectionTitle)
     gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).type(this.academicSetUp.SectionName)
-    cy.wait(1000)
+    cy.wait(4000)
     gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(0).invoke('val').then((text) => {
       var sectext = text
       cy.log(sectext)
@@ -97,13 +97,13 @@ describe("Admin School Validation", function () {
     gradeAndSubjectPage.getAddNewSectionPopUPSectionNameTextField().eq(1).type(this.academicSetUp.NumberOfStudent)
     gradeAndSubjectPage.getOptionalSubjectsDropDownBtn().click()
     gradeAndSubjectPage.getAddNewSectionPopUPOptionalSubjectsLists().click({ multiple: true })
-    cy.wait(1000)
+    cy.wait(3000)
     cy.get('body').click(0, 0)
     cy.wait(3000)
     gradeAndSubjectPage.getAddNewSectionPopUPAddSectionBtn().click({ force: true })
     cy.wait(2000)
     adminschoolpage.getAcademicSetUpTittle().should('have.text', this.academicSetUp.academicSetUpTittle)
-    cy.wait(2000)
+    cy.wait(4000)
     gradeAndSubjectPage.getSectionAddBtn('Grade 6').eq(0).then((sectionText1) => {
       var sectionText = sectionText1.text()
       cy.log(sectionText)
@@ -232,7 +232,7 @@ describe("Admin School Validation", function () {
     adminaccountsPage.getAdminSelectRoleLists().contains('Teacher').click()
     adminaccountsPage.getAdminAddressLine1btn().type('Bnagalore Univercity')
     adminaccountsPage.getAdminAddressLine2Btn().type("Ulall")
-    adminaccountsPage.getAdminPincode().type('560057')
+    adminaccountsPage.getAdminPincode().type('560056')
     // cy.get('input[name="state"]').click({force:true})
     cy.wait(4000)
     adminaccountsPage.getAdminContinueBtn().click()
@@ -341,7 +341,36 @@ describe("Admin School Validation", function () {
     cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
       cy.teacherLogin(validAdminLoginData.teacherUserName3, validAdminLoginData.teacherPassword)
     })
+    timeTableManagement.getTeacherDashBoardUpNextText().should('have.text','Up Next')
+    timeTableManagement.getTeacherDashBoardLaterTodayText().should('have.text','Later Today')
+    cy.wait(3000)
+    timeTableManagement.getTeacherMyClassSideBarImgBtn().click()
+    timeTableManagement.getTeacherMyClassSubjects().should('be.visible')
+    timeTableManagement.getTeacherMyClassSubjects().eq(0).click()
+    timeTableManagement.getMyclassPerticulatSubjectTabs().should('be.visible')
+    cy.wait(2000)
+    timeTableManagement.getTeacherMyCalanderSideBarImgBtn().click()
+    var d = new Date();
+    var date = d.getDate()
+    cy.log(date)
+    timeTableManagement.getMyClassTeacherAssingedClassbtn().should('be.visible')
 
+    teacherDashBoardPage.teacherLogout()
+
+    cy.visit(Cypress.env("url"))
+    cy.viewport(1920, 1080)
+    cy.fixture("LMS/Credentials").then(function (validAdminLoginData) {
+      cy.adminLogin(validAdminLoginData.username, validAdminLoginData.password)
+    })
+
+    cy.wait(2000)
+    adminschoolpage.getSchoolSideBarNavigationImg().trigger('mouseover').click()
+    adminschoolpage.getAdminSchoolQuickLinkTittle().should('have.text', this.academicSetUp.AdminSchoolQuickLinkTittle)
+    adminschoolpage.getAdminTimetableManagement().click()
+    timeTableManagement.getTimetableManagmentText().should('have.text', 'Timetable Management')
+    timeTableManagement.getDeleteTimeTableForParticularGrade('Grade 7 - a',{timeout:1000}).click()
+    timeTableManagement.getTimeTableDeletePopUpBtn().click()
+    cy.wait(3000)
 
   })
 
@@ -360,10 +389,12 @@ describe("Admin School Validation", function () {
         timeTableManagement.getTimeTableManagementActionDeleteBtns().should('be.visible')
       }
     })
+    timeTableManagement.getTimeTableEditBtnForPerticularGrade('Grade 7 - B').click()
     cy.wait(1000)
-    timeTableManagement.getTimeTableManagementActionEditBtns().eq(0).click({ force: true })
+    // timeTableManagement.getTimeTableManagementActionEditBtns().eq(0).click({ force: true })
     cy.wait(2000)
-    // timeTableManagement.getTimeTableManagementClassCardSections().eq(49).click()
+    timeTableManagement.getEditTimetableTable().should('be.visible')
+    timeTableManagement.getTimeTableManagementClassCardSections().should('be.visible')
   })
 
 })
